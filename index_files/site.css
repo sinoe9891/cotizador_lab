@@ -1,0 +1,1007 @@
+@import url("../plugins/font-awesome-4.7.0/css/font-awesome.min.css");
+
+body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #e2e2e2;
+}
+
+.main-wrapper {
+    max-width: 1268px;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
+}
+
+.navbar {
+    margin-bottom: 0px;
+}
+
+.img-center {
+    margin: 0 auto;
+}
+
+.jumbotron {
+    background: #3CC2E7;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+#main {
+}
+
+@media print {
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+
+.cta-section {
+    background: rgba(0, 0, 0, 0) url("/cotizador/web/img/banner.jpg") no-repeat scroll left top / cover;
+    padding: 55px 0;
+}
+
+.black-trans-bg {
+    position: relative;
+}
+
+.black-trans-bg::before {
+    background: #000 none repeat scroll 0 0;
+    content: "";
+    height: 100%;
+    left: 0;
+    opacity: 0.3;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+}
+
+.cta-title h2 {
+    color: #fff;
+    display: inline-block;
+    font-size: 26px;
+    line-height: 30px;
+    padding: 16px 0;
+    text-transform: uppercase;
+}
+
+.cta-title a {
+    margin-top: 26px;
+    border: 1px solid #fff;
+    color: #fff;
+    display: inline-block;
+    float: right;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0;
+    padding: 9px 18px;
+    text-transform: uppercase;
+}
+
+.toggle-button {
+    position: relative;
+    display: inline-block;
+    color: #fff;
+}
+
+.toggle-button label {
+    display: inline-block;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: left;
+    font-size: 10px;
+}
+
+.toggle-button input {
+    display: none;
+}
+
+.toggle-button__icon {
+    cursor: pointer;
+    pointer-events: none;
+}
+
+.toggle-button__icon:before, .toggle-button__icon:after {
+    content: "";
+    position: absolute;
+    top: 45%;
+    left: 35%;
+    transition: 0.2s ease-out;
+}
+
+/*
+ * Toggle button variables
+ */
+/*
+ * Toggle button styles
+ */
+.toggle-button--aava label {
+    height: 50px;
+    line-height: 54px;
+    transition: all 0.2s;
+    border-radius: 2rem;
+}
+
+.toggle-button--aava label:before, .toggle-button--aava label:after {
+    position: absolute;
+    right: 1.5rem;
+    transition: all 0.2s .1s ease-out;
+}
+
+.toggle-button--aava label:before {
+    content: attr(data-on-text);
+}
+
+.toggle-button--aava label:after {
+    content: attr(data-off-text);
+}
+
+.toggle-button--aava input[type=checkbox] + label {
+    width: 120px;
+    background: #FF5335;
+}
+
+.toggle-button--aava input[type=checkbox] + label:before {
+    opacity: 0;
+    transform: translate(0, 20px);
+}
+
+.toggle-button--aava input[type=checkbox] + label:after {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.toggle-button--aava input[type=checkbox]:checked ~ label {
+    width: 120px;
+    background: #61B136;
+}
+
+.toggle-button--aava input[type=checkbox]:checked ~ label:before {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.toggle-button--aava input[type=checkbox]:checked ~ label:after {
+    opacity: 0;
+    transform: translate(0, -20px);
+}
+
+.toggle-button--aava input[type=checkbox]:checked ~ .toggle-button__icon:before {
+    transform: translate(-10%, 100%) rotate(45deg);
+    width: 16.66667px;
+}
+
+.toggle-button--aava input[type=checkbox]:checked ~ .toggle-button__icon:after {
+    transform: translate(30%) rotate(-45deg);
+}
+
+.toggle-button--aava .toggle-button__icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 50px;
+    width: 50px;
+}
+
+.toggle-button--aava .toggle-button__icon:before, .toggle-button--aava .toggle-button__icon:after {
+    height: 3px;
+    border-radius: 3px;
+    background: #fff;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.toggle-button--aava .toggle-button__icon:before {
+    width: 25px;
+    transform: rotate(45deg);
+}
+
+.toggle-button--aava .toggle-button__icon:after {
+    width: 25px;
+    transform: rotate(-45deg);
+}
+
+/*
+ * Toggle button variables
+ */
+/*
+ * Toggle button styles
+ */
+.toggle-button--tuuli label {
+    height: 50px;
+    line-height: 50px;
+    transition: all 0.2s;
+    border-radius: 2rem;
+}
+
+.toggle-button--tuuli label:before, .toggle-button--tuuli label:after {
+    position: absolute;
+    right: 1rem;
+    transition: all 0.2s .1s ease-out;
+}
+
+.toggle-button--tuuli input[type=checkbox] + label {
+    width: 50px;
+    background: #FF5335;
+}
+
+.toggle-button--tuuli input[type=checkbox] + label:before {
+    opacity: 0;
+    transform: translate(0, 20px);
+}
+
+.toggle-button--tuuli input[type=checkbox] + label:after {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.toggle-button--tuuli input[type=checkbox]:checked ~ label {
+    width: 50px;
+    background: #61B136;
+}
+
+.toggle-button--tuuli input[type=checkbox]:checked ~ .toggle-button__icon:before {
+    transform: translate(-30%, 100%) rotate(45deg) scale(0.6, 1);
+}
+
+.toggle-button--tuuli input[type=checkbox]:checked ~ .toggle-button__icon:after {
+    transform: translate(20%) rotate(-45deg);
+}
+
+.toggle-button--tuuli .toggle-button__icon {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    top: 0;
+    left: 0;
+}
+
+.toggle-button--tuuli .toggle-button__icon:before, .toggle-button--tuuli .toggle-button__icon:after {
+    width: 25px;
+    height: 3px;
+    border-radius: 3px;
+    background: #fff;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    margin-left: -10%;
+    top: 48%;
+}
+
+.toggle-button--tuuli .toggle-button__icon:before {
+    transform: rotate(45deg);
+}
+
+.toggle-button--tuuli .toggle-button__icon:after {
+    transform: rotate(-45deg);
+}
+
+/*
+ * Toggle button variables
+ */
+/*
+ * Toggle button styles
+ */
+.toggle-button--vesi label {
+    height: 50px;
+    line-height: 50px;
+    transition: all 0.2s;
+    border-radius: 2rem;
+}
+
+.toggle-button--vesi label:before, .toggle-button--vesi label:after {
+    position: absolute;
+    right: 1.5rem;
+    transition: all 0.2s .15s ease-out;
+}
+
+.toggle-button--vesi label:before {
+    content: attr(data-on-text);
+}
+
+.toggle-button--vesi label:after {
+    content: attr(data-off-text);
+}
+
+.toggle-button--vesi input[type=checkbox] + label {
+    width: 50px;
+    background: #3cc2e7;
+}
+
+.toggle-button--vesi input[type=checkbox] + label:before {
+    opacity: 0;
+    transform: translate(0, 20px);
+}
+
+.toggle-button--vesi input[type=checkbox] + label:after {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.toggle-button--vesi input[type=checkbox]:checked ~ label {
+    width: 50px;
+    background: #61B136;
+}
+
+.toggle-button--vesi input[type=checkbox]:checked ~ label:before {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.toggle-button--vesi input[type=checkbox]:checked ~ label:after {
+    opacity: 0;
+    transform: translate(0, -20px);
+}
+
+.toggle-button--vesi input[type=checkbox]:checked ~ .toggle-button__icon:before {
+    transform: translate(-10%, 100%) rotate(45deg);
+    width: 9.66667px;
+}
+
+.toggle-button--vesi input[type=checkbox]:checked ~ .toggle-button__icon:after {
+    transform: translate(30%) rotate(-45deg);
+}
+
+.toggle-button--vesi .toggle-button__icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 50px;
+    width: 50px;
+}
+
+.toggle-button--vesi .toggle-button__icon:before, .toggle-button--vesi .toggle-button__icon:after {
+    height: 3px;
+    border-radius: 3px;
+    background: #fff;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.toggle-button--vesi .toggle-button__icon:before {
+    width: 15px;
+    transform: rotate(90deg);
+}
+
+.toggle-button--vesi .toggle-button__icon:after {
+    width: 15px;
+    transform: rotate(0);
+}
+
+/*
+ * Toggle button variables
+ */
+/*
+ * Toggle button styles
+ */
+.toggle-button--sade {
+    width: 100px;
+    height: 20px;
+}
+
+.toggle-button--sade label {
+    position: absolute;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    transition: all 0.2s;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.toggle-button--sade label:before, .toggle-button--sade label:after {
+    position: absolute;
+    top: 0;
+    left: 30px;
+    transition: all 0.2s .1s ease-out;
+}
+
+.toggle-button--sade label:before {
+    content: attr(data-on-text);
+}
+
+.toggle-button--sade label:after {
+    content: attr(data-off-text);
+}
+
+.toggle-button--sade input + label:before {
+    opacity: 0;
+    transform: translate(20px, 0);
+}
+
+.toggle-button--sade input + label:after {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.toggle-button--sade input:checked ~ label:before {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.toggle-button--sade input:checked ~ label:after {
+    opacity: 0;
+    transform: translate(20px, 0);
+}
+
+.toggle-button--sade input[type=checkbox]:checked ~ .toggle-button__icon:before, .toggle-button--sade input[type=checkbox]:checked ~ .toggle-button__icon:after {
+    background: #61B136;
+}
+
+.toggle-button--sade input[type=checkbox]:checked ~ .toggle-button__icon:before {
+    transform: translate(-30%, 70%) rotate(45deg) scale(0.7, 1);
+}
+
+.toggle-button--sade input[type=checkbox]:checked ~ .toggle-button__icon:after {
+    transform: translate(20%) rotate(-45deg);
+}
+
+.toggle-button--sade .toggle-button__icon {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    top: 0;
+    left: 0;
+}
+
+.toggle-button--sade .toggle-button__icon:before, .toggle-button--sade .toggle-button__icon:after {
+    width: calc(20px - 8px);
+    height: 3px;
+    border-radius: 3px;
+    background: #fff;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    margin-left: -3px;
+    top: 40%;
+    background: #FF5335;
+}
+
+.toggle-button--sade .toggle-button__icon:before {
+    transform: rotate(45deg);
+}
+
+.toggle-button--sade .toggle-button__icon:after {
+    transform: rotate(-45deg);
+}
+
+.toggle-button--sade:hover label {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-button--sade:hover input[type=checkbox]:not(:checked) ~ .toggle-button__icon:before {
+    animation: icon-hover-before .2s;
+}
+
+.toggle-button--sade:hover input[type=checkbox]:not(:checked) ~ .toggle-button__icon:after {
+    animation: icon-hover-after .2s;
+}
+
+@keyframes icon-hover-before {
+    0% {
+        transform: rotate(45deg) scale(1, 1);
+    }
+    100% {
+        transform: rotate(45deg) scale(1.2, 1.2);
+    }
+}
+
+@keyframes icon-hover-after {
+    0% {
+        transform: rotate(-45deg) scale(1, 1);
+    }
+    50% {
+        transform: rotate(-45deg) scale(1.2, 1.2);
+    }
+}
+
+/*
+ * Toggle button variables
+ */
+/*
+ * Toggle button styles
+ */
+.toggle-button--ilma {
+    width: 100px;
+    height: 20px;
+}
+
+.toggle-button--ilma label {
+    position: absolute;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    transition: all 0.2s;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.toggle-button--ilma label:before, .toggle-button--ilma label:after {
+    position: absolute;
+    top: 0;
+    left: 30px;
+    transition: all 0.2s .1s ease-out;
+}
+
+.toggle-button--ilma label:before {
+    content: attr(data-on-text);
+}
+
+.toggle-button--ilma label:after {
+    content: attr(data-off-text);
+}
+
+.toggle-button--ilma input + label:before {
+    opacity: 0;
+    transform: translate(20px, 0);
+}
+
+.toggle-button--ilma input + label:after {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.toggle-button--ilma input:checked ~ label:before {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.toggle-button--ilma input:checked ~ label:after {
+    opacity: 0;
+    transform: translate(20px, 0);
+}
+
+.toggle-button--ilma input[type=checkbox]:checked ~ .toggle-button__icon:before, .toggle-button--ilma input[type=checkbox]:checked ~ .toggle-button__icon:after {
+    background: #61B136;
+    transition: none;
+    transform-origin: left center;
+}
+
+.toggle-button--ilma input[type=checkbox]:checked ~ .toggle-button__icon:before {
+    animation: iconShowBefore .3s;
+    transform: translate(0, 0) rotate(45deg) scale(0.6, 1);
+}
+
+.toggle-button--ilma input[type=checkbox]:checked ~ .toggle-button__icon:after {
+    animation: iconShowAfter .6s;
+    transform: translate(4px, 6px) rotate(-45deg);
+}
+
+.toggle-button--ilma .toggle-button__icon {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    top: 0;
+    left: 0;
+}
+
+.toggle-button--ilma .toggle-button__icon:before, .toggle-button--ilma .toggle-button__icon:after {
+    width: calc(20px - 6px);
+    height: 3px;
+    border-radius: 3px;
+    background: #fff;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    margin-left: -4px;
+    top: 40%;
+    background: #FF5335;
+    transform-origin: center center;
+}
+
+.toggle-button--ilma .toggle-button__icon:before {
+    transform: rotate(45deg);
+}
+
+.toggle-button--ilma .toggle-button__icon:after {
+    transform: rotate(-45deg);
+}
+
+.toggle-button--ilma:hover label {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-button--ilma:hover input[type=checkbox]:not(:checked) ~ .toggle-button__icon:before {
+    animation: iconHoverBefore .2s;
+}
+
+.toggle-button--ilma:hover input[type=checkbox]:not(:checked) ~ .toggle-button__icon:after {
+    animation: iconHoverAfter .2s;
+}
+
+@keyframes iconShowBefore {
+    0% {
+        transform: translate(0, 0) rotate(45deg) scale(0, 1);
+    }
+    100% {
+        transform: translate(0, 0) rotate(45deg) scale(0.6, 1);
+    }
+}
+
+@keyframes iconShowAfter {
+    0% {
+        opacity: 0;
+    }
+    49% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+        transform: translate(4px, 6px) rotate(-45deg) scale(0, 1);
+    }
+    100% {
+        transform: translate(4px, 6px) rotate(-45deg) scale(1, 1);
+    }
+}
+
+@keyframes iconHoverBefore {
+    0% {
+        transform: rotate(45deg) scale(1, 1);
+    }
+    100% {
+        transform: rotate(45deg) scale(1.2, 1.2);
+    }
+}
+
+@keyframes iconHoverAfter {
+    0% {
+        transform: rotate(-45deg) scale(1, 1);
+    }
+    50% {
+        transform: rotate(-45deg) scale(1.2, 1.2);
+    }
+}
+
+/*
+ * Toggle button variables
+ */
+/*
+ * Toggle button styles
+ */
+.toggle-button--tuli label {
+    line-height: 20px;
+    text-indent: 30px;
+}
+
+.toggle-button--tuli input[type=checkbox]:checked ~ .toggle-button__icon {
+    background: #fff;
+}
+
+.toggle-button--tuli input[type=checkbox]:checked ~ .toggle-button__icon:before, .toggle-button--tuli input[type=checkbox]:checked ~ .toggle-button__icon:after {
+    opacity: 1;
+}
+
+.toggle-button--tuli .toggle-button__icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    transition: all 0.2s;
+    border: 2px solid #fff;
+    border-radius: 1px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.toggle-button--tuli .toggle-button__icon:before, .toggle-button--tuli .toggle-button__icon:after {
+    top: 5px;
+    left: 2px;
+    width: 12px;
+    height: 2px;
+    border-radius: 3px;
+    background: #fff;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    top: 35%;
+    background: #61B136;
+    opacity: 0;
+    transform-origin: left center;
+}
+
+.toggle-button--tuli .toggle-button__icon:before {
+    transform: translate(0, 0) rotate(45deg) scale(0.6, 1);
+}
+
+.toggle-button--tuli .toggle-button__icon:after {
+    transform: translate(4px, 6px) rotate(-45deg);
+}
+
+.toggle-button--tuli:hover input[type=checkbox]:not(:checked) ~ .toggle-button__icon {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.table-parent {
+    height: 800px;
+    overflow: scroll;
+}
+
+.center-block {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-group .icon-addon .form-control {
+    border-radius: 0;
+}
+
+.icon-addon {
+    position: relative;
+    color: #555;
+    display: block;
+}
+
+.icon-addon:after,
+.icon-addon:before {
+    display: table;
+    content: " ";
+}
+
+.icon-addon:after {
+    clear: both;
+}
+
+.icon-addon.addon-md .glyphicon,
+.icon-addon .glyphicon,
+.icon-addon.addon-md .fa,
+.icon-addon .fa {
+    position: absolute;
+    z-index: 2;
+    left: 10px;
+    font-size: 14px;
+    width: 20px;
+    margin-left: -2.5px;
+    text-align: center;
+    padding: 10px 0;
+    top: 1px
+}
+
+.icon-addon.addon-lg .form-control {
+    line-height: 1.33;
+    height: 46px;
+    font-size: 18px;
+    padding: 10px 16px 10px 40px;
+}
+
+.icon-addon.addon-sm .form-control {
+    height: 30px;
+    padding: 5px 10px 5px 28px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.icon-addon.addon-lg .fa,
+.icon-addon.addon-lg .glyphicon {
+    font-size: 18px;
+    margin-left: 0;
+    left: 11px;
+    top: 4px;
+}
+
+.icon-addon.addon-md .form-control,
+.icon-addon .form-control {
+    padding-left: 30px;
+    float: left;
+    font-weight: normal;
+}
+
+.icon-addon.addon-sm .fa,
+.icon-addon.addon-sm .glyphicon {
+    margin-left: 0;
+    font-size: 12px;
+    left: 5px;
+    top: -1px
+}
+
+.icon-addon .form-control:focus + .glyphicon,
+.icon-addon:hover .glyphicon,
+.icon-addon .form-control:focus + .fa,
+.icon-addon:hover .fa {
+    color: #2580db;
+}
+
+form div.required label.control-label:after {
+    content: " * ";
+    color: red;
+}
+
+.wizard {
+    background: #fff;
+}
+
+.wizard .nav-tabs {
+    position: relative;
+    margin: 0px auto;
+    margin-bottom: 0;
+    border-bottom-color: #e0e0e0;
+}
+
+.wizard > div.wizard-inner {
+    position: relative;
+}
+
+.connecting-line {
+    height: 2px;
+    background: #e0e0e0;
+    position: absolute;
+    width: 80%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 50%;
+    z-index: 1;
+}
+
+.wizard .nav-tabs > li.active > a, .wizard .nav-tabs > li.active > a:hover, .wizard .nav-tabs > li.active > a:focus {
+    color: #555555;
+    cursor: default;
+    border: 0;
+    border-bottom-color: transparent;
+}
+
+span.round-tab {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    display: inline-block;
+    border-radius: 100px;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    text-align: center;
+    font-size: 25px;
+}
+
+span.round-tab i {
+    color: #555555;
+}
+
+.wizard li.active span.round-tab {
+    background: #fff;
+    border: 2px solid #5bc0de;
+
+}
+
+.wizard li.active span.round-tab i {
+    color: #5bc0de;
+}
+
+span.round-tab:hover {
+    color: #333;
+    border: 2px solid #333;
+}
+
+.wizard .nav-tabs > li {
+    width: 33.33%;
+}
+
+.wizard li:after {
+    content: " ";
+    position: absolute;
+    left: 46%;
+    opacity: 0;
+    margin: 0 auto;
+    bottom: 0px;
+    border: 5px solid transparent;
+    border-bottom-color: #5bc0de;
+    transition: 0.1s ease-in-out;
+}
+
+.wizard li.active:after {
+    content: " ";
+    position: absolute;
+    left: 47%;
+    opacity: 1;
+    margin: 0 auto;
+    bottom: 0px;
+    border: 10px solid transparent;
+    border-bottom-color: #5bc0de;
+}
+
+.wizard .nav-tabs > li a {
+    width: 70px;
+    height: 70px;
+    margin: 20px auto;
+    border-radius: 100%;
+    padding: 0;
+}
+
+.wizard .nav-tabs > li a:hover {
+    background: transparent;
+}
+
+.wizard .tab-pane {
+    position: relative;
+    padding-top: 10px;
+}
+
+.wizard h3 {
+    margin-top: 0;
+}
+
+@media ( max-width: 585px ) {
+
+    .wizard {
+        width: 90%;
+        height: auto !important;
+    }
+
+    span.round-tab {
+        font-size: 16px;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
+
+    .wizard .nav-tabs > li a {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
+
+    .wizard li.active:after {
+        content: " ";
+        position: absolute;
+        left: 35%;
+    }
+}
+
+.btn {
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    border-radius: 2rem;
+}
+
+.btn-lb {
+    background-color: #3cc2e7;
+    border: #3cc2e7;
+    color: #fff;
+}
+
+.btn-lb:hover {
+    background-color: #cccccc;
+    border-color: #cccccc;
+    color: black;
+}
+
+h1, h2, h3, h4, h5 {
+    margin-top: 0px;
+}
+
+.borderless > tbody > tr > td,
+.borderless > tbody > tr > th,
+.borderless > tfoot > tr > td,
+.borderless > tfoot > tr > th,
+.borderless > thead > tr > td,
+.borderless > thead > tr > th {
+    border: none;
+}
+
+.panel-default > .panel-heading {
+    background: white !important;
+}
+
+p {
+    margin: 0 0 0px;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    border-top: none !important;
+}
+
+.table > thead > tr > th {
+    vertical-align: bottom;
+    border-bottom: none !important;
+}
+
+.table-condensed > thead > tr > th, .table-condensed > tbody > tr > th, .table-condensed > tfoot > tr > th, .table-condensed > thead > tr > td, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > td {
+    padding: 1px !important;
+}
+
+.table-responsive {
+    border:0px !important;
+}
