@@ -15,7 +15,8 @@ for ($i = 0, $size = count($exams); $i < $size; ++$i) {
         ';
 }
 $emailSubject = "Cotización de Exámenes";
-$emailTo = "info@laboratorioscatacamas.hn";
+$emailTo = "info@laboratorioscatacamas.hn,sinoeproducciones@gmail.com,musaenz@gmail.com
+";
 $headers = "From: no-reply@laboratorioscatacamas.hn \r\n";
 $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 $emailBody = ' 
