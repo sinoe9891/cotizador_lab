@@ -326,8 +326,8 @@ include 'conexion.php';
 											<ol style="font-size:13px;">
 												<li>Los precios de esta cotización estan sujetos a cambio sin previo
 													aviso.</li>
-												<li>Laboratorios Hosanna le recomienda consultar con su medico sobre las
-													pruebas que
+												<li>Laboratorios Catacamas le recomienda consultar con su médico sobre los
+													exámenes que
 													desea realizarse.
 												</li>
 											</ol>

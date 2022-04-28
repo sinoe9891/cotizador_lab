@@ -25,7 +25,7 @@ $emailBody = '
 <html>
 
 <head></head>
-
+| replace: "font-family: "Poppins, sans-serif;"
 <body style="background:#eaeced;">
 	<style type="text/css">
 		<!--
@@ -301,9 +301,9 @@ mail($emailTo, $emailSubject, $emailBody, $headers);
 	<script src="assets/js/sweetalert2.all.min.js"></script>
 	<link rel="stylesheet" id="morriston-google-fonts-css" href="https://fonts.googleapis.com/css?family=Pacifico:400,400i,500,500i,600,600i,700,700i,800,800i%7CPoppins:400,400i,500,500i,600,600i,700,700i,800,800i&amp;subset=latin,cyrillic-ext,latin-ext,cyrillic,greek-ext,greek,vietnamese" type="text/css" media="all">
 	<link rel="icon" href="https://laboratorioscatacamas.hn/wp-content/uploads/2022/04/favicon_v.png" sizes="32x32">
-	<link rel="alternate" type="application/rss+xml" title="Laboratorios Catacamas » Feed" href="https://laboratorioshosanna.com/feed/">
-	<link rel="icon" href="https://laboratorioshosanna.com/wp-content/uploads/2020/10/cropped-Favicon2-Laboratorios_Hosanna_Honduras-192x192.png" sizes="192x192">
-	<link rel="apple-touch-icon" href="https://laboratorioshosanna.com/wp-content/uploads/2020/10/cropped-Favicon2-Laboratorios_Hosanna_Honduras-180x180.png">
+	<link rel="alternate" type="application/rss+xml" title="Laboratorios Catacamas » Feed" href="https://laboratorioscatacamas.hn/feed/">
+	<link rel="icon" href="https://laboratorioscatacamas.hn/wp-content/uploads/2020/10/cropped-Favicon2-Laboratorios_Hosanna_Honduras-192x192.png" sizes="192x192">
+	<link rel="apple-touch-icon" href="https://laboratorioscatacamas.hn/wp-content/uploads/2020/10/cropped-Favicon2-Laboratorios_Hosanna_Honduras-180x180.png">
 	<link rel="alternate" type="application/rss+xml" title="Laboratorios Catacamas » Feed de los comentarios">
 	<title>Muchas Gracias</title>
 </head>
