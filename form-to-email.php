@@ -25,7 +25,6 @@ $emailBody = '
 <html>
 
 <head></head>
-| replace: "font-family: "Poppins, sans-serif;"
 <body style="background:#eaeced;">
 	<style type="text/css">
 		<!--
