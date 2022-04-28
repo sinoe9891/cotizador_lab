@@ -15,12 +15,15 @@ include 'conexion.php';
 	<link href="fonts/fontawesome-webfont.woff2" rel="stylesheet">
 	<link href="fonts/glyphicons-halflings-regular.woff2" rel="stylesheet">
 	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href="assets/css/all.css" rel="stylesheet">
 	<link href="./index_files/bootstrap.css" rel="stylesheet">
 	<link href="./index_files/site.css" rel="stylesheet">
 	<script src="./index_files/jquery.js.descarga"></script>
 	<script src="./index_files/yii.js.descarga"></script>
 	<script src="./index_files/bootstrap.js.descarga"></script>
 	<script src="./index_files/api.js.descarga"></script>
+	<script src="assets/js/sweetalert2.all.min.js"></script>
+	<link rel="stylesheet" id="morriston-google-fonts-css" href="https://fonts.googleapis.com/css?family=Pacifico:400,400i,500,500i,600,600i,700,700i,800,800i%7CPoppins:400,400i,500,500i,600,600i,700,700i,800,800i&amp;subset=latin,cyrillic-ext,latin-ext,cyrillic,greek-ext,greek,vietnamese" type="text/css" media="all">
 	<link rel="icon" href="https://laboratorioscatacamas.hn/wp-content/uploads/2022/04/favicon_v.png" sizes="32x32">
 	<link rel="alternate" type="application/rss+xml" title="Laboratorios Catacamas » Feed" href="https://laboratorioscatacamas.hn/feed/">
 	<link rel="icon" href="https://laboratorioshosanna.com/wp-content/uploads/2020/10/cropped-Favicon2-Laboratorios_Hosanna_Honduras-192x192.png" sizes="192x192">
@@ -31,15 +34,18 @@ include 'conexion.php';
 
 <body>
 	<div class="main-wrapper">
-		<div class="row" style="margin-right: 0 !important;margin-left: 0 !important;">
-			<div class="col-sm-4"><br><img src="https://laboratorioscatacamas.hn/wp-content/uploads/2022/04/cropped-logo-02-1.png" alt="" class="img-responsive img-center img-logo" style=""></div>
-			<div class="col-sm-4"><br><br>
-				<h1 class="text-center big-title">Cotizador de Exámenes</h1>
-			</div>
+		<div class="row" style="margin-right: 0 !important;margin-left: 0 !important;    display: flex;align-items: center;">
 			<div class="col-sm-4"></div>
-		</div>
+			<div class="col-sm-4 titulo"><br>
+				<img src="https://laboratorioscatacamas.hn/wp-content/uploads/2022/04/cropped-logo-02-1.png" alt="" class="img-responsive img-center img-logo" style="">
+				<br>
+				<h2 class="text-center big-title">Cotizador de Exámenes</h2>
+			</div>
+			<div class="col-sm-4">
 
-		<br>
+
+			</div>
+		</div>
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -52,9 +58,9 @@ include 'conexion.php';
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav text-center">
-						<li class=""><a href="https://laboratorioscatacamas.hn/">Inicio</a></li>
-						<li class=""><a href="https://laboratorioscatacamas.hn/cotizador" target="_blank">Nueva
-								Cotización</a></li>
+						<li class=""><a href="https://laboratorioscatacamas.hn/"><p><i class="fa-solid fa-caret-right"></i>Volver al Inicio</p></a></li>
+						<li class=""><a href="https://laboratorioscatacamas.hn/cotizador" target="_blank"><p><i class="fa-solid fa-caret-right"></i>Nueva
+								Cotización</p></a></li>
 					</ul>
 				</div>
 				<!--/.nav-collapse -->
@@ -85,7 +91,7 @@ include 'conexion.php';
 										<li role="presentation" class="active">
 											<a href="https://laboratorioscatacamas.hn/cotizador/#step1" data-toggle="tab" aria-controls="step1" role="tab" title="" data-original-title="Seleccionar Exámenes">
 												<span class="round-tab">
-													<i class="fa fa-flask"></i>
+													<i class="fa-solid fa-flask-vial"></i>
 												</span>
 											</a>
 										</li>
@@ -93,7 +99,7 @@ include 'conexion.php';
 										<li role="presentation" class="disabled">
 											<a href="https://laboratorioscatacamas.hn/cotizador/#step2" data-toggle="tab" aria-controls="step2" role="tab" title="" data-original-title="Información de Contacto">
 												<span class="round-tab">
-													<i class="fa fa-id-card"></i>
+													<i class="fa-regular fa-address-card"></i>
 												</span>
 											</a>
 										</li>
@@ -101,7 +107,7 @@ include 'conexion.php';
 										<li role="presentation" class="disabled">
 											<a href="https://laboratorioscatacamas.hn/cotizador/#complete" data-toggle="tab" aria-controls="complete" role="tab" title="" data-original-title="Solicitar Cotización">
 												<span class="round-tab">
-													<i class="glyphicon glyphicon-ok"></i>
+													<i class="fa-solid fa-clipboard-check"></i>
 												</span>
 											</a>
 										</li>
@@ -139,31 +145,31 @@ include 'conexion.php';
 														</div>
 													</div>
 												</div>
-												<div class="col-lg-6">
-													<p>En este cotizador encontrará los exámenes de rutina, si desea
-														cotizar un examen que no se encuentra en esta lista, puede
-														comunicarse con
-														nosotros enviando un correo electrónico a <a href="mailto:info@laboratorioscatacamas.hn">info@laboratorioscatacamas.hn</a>
+												<div class="col-lg-6 informacion">
+													<p>Aquí encontrará exámenes especiales y de rutina, si desea cotizar un exámen que no se encuentra en esta lista, por favor comunicarse con nosotros enviando un correo electrónico a <a href="mailto:info@laboratorioscatacamas.hn">info@laboratorioscatacamas.hn</a>
 														o llamando al <a href="tel:+50427994495">+504 2799-4495</a>.</p>
 												</div>
-
-
 											</div>
 											<div class="row">
 												<div class="col-lg-12 table-parent">
 													<table id="tabla-examenes" class="table table-hover table-striped table-responsive">
 														<tbody>
 															<?php
-															$consulta = $conn->query("SELECT a.id, a.nombre, a.precio, b.nombre AS categoria FROM exa_especiales a, categoria b WHERE a.categoria = b.id ORDER BY a.nombre ASC");
-															$numero = 1;
-															while ($solicitud = $consulta->fetch_array()) {
-																?>
-																<tr data-name="<?php echo $solicitud['nombre'] ?>">
+															$consulta = $conn->query("SELECT a.id, a.nombre, a.precio, b.nombre AS categoria FROM exa_rutina a, categoria b WHERE a.categoria = b.id ORDER BY a.nombre ASC");
+
+															$numero = mysqli_num_rows($consulta);
+															echo '<h4>Total exámenes disponibles: <b>' . $numero . '</b></h4><hr>';
+															?>
+															<?php
+															while ($hola = $consulta->fetch_array()) {
+															?>
+
+																<tr data-name="<?php echo $hola['nombre'] ?>">
 																	<td style="width:80%;">
 																		<h4>
-																			<b><?php echo $solicitud['nombre'] ?></b>
+																			<b><?php echo $hola['nombre'] ?></b>
 																		</h4>
-																		<p><b>Tipo: </b><?php echo $solicitud['categoria'] ?></p>
+																		<p><b>Tipo: </b><?php echo $hola['categoria'] ?></p>
 																		<!-- <p><b>Condiciones: </b>Requiere ayuno</p>
 																	<p><b>Tiempo de entrega: </b>Lunes a Viernes</p>
 																	<p><b>Local de Toma de Muestra: </b>Todos los
@@ -173,8 +179,8 @@ include 'conexion.php';
 
 																	<td style="vertical-align: middle">
 																		<div class="toggle-button toggle-button--vesi">
-																			<input onclick="return seleccionarExamen(this,true)" data-relaciones="" id="toggleButton<?php echo $solicitud['id'] ?>" type="checkbox" name="Examen[]" value="<?php echo $solicitud['nombre'] ?>">
-																		<label for="toggleButton<?php echo $solicitud['id'] ?>" data-on-text="" data-off-text=""></label>
+																			<input onclick="return seleccionarExamen(this,true)" data-relaciones="" id="toggleButton<?php echo $hola['id'] ?>" type="checkbox" name="Examen[]" value="<?php echo $hola['nombre'] ?>">
+																			<label for="toggleButton<?php echo $hola['id'] ?>" data-on-text="" data-off-text=""></label>
 																			<div class="toggle-button__icon"></div>
 																		</div>
 																	</td>
@@ -182,7 +188,7 @@ include 'conexion.php';
 															<?php
 															}
 															?>
-															
+
 															<!-- <tr data-name="Vitamina B12">
 																<td style="width:80%;">
 																	<h4>
@@ -223,13 +229,6 @@ include 'conexion.php';
 														</td>
 
 														<td>
-															<ul class="list-inline pull-right">
-
-																<li>
-																	<button type="button" class="btn  btn-lg btn-lb next-step" data-step="2">Continuar
-																	</button>
-																</li>
-															</ul>
 														</td>
 													</tr>
 												</tbody>
@@ -286,6 +285,25 @@ include 'conexion.php';
 													</div>
 												</div>
 											</div>
+											<table class="table-responsive table borderless">
+												<tbody>
+													<tr>
+														<!-- <td>
+															<h4>Información de Contacto</h4>
+														</td> -->
+
+														<td>
+															<ul class="list-inline pull-right">
+
+																<li>
+																	<button type="button" class="btn  btn-lg btn-lb next-step" data-step="2">Continuar
+																	</button>
+																</li>
+															</ul>
+														</td>
+													</tr>
+												</tbody>
+											</table>
 										</div>
 									</div>
 									<div class="tab-pane" role="tabpanel" id="complete">
@@ -488,20 +506,24 @@ include 'conexion.php';
 							}
 						}
 						if ($(this).attr('data-step') == "2") {
-							if ($("#cotizacion-nombres").val() == "") {
-								error += "Nombre no puede estar vacío. \n";
-							}
-							if ($("#cotizacion-apellidos").val() == "") {
+							if ($("#cotizacion-nombres").val() == "" || $("#cotizacion-apellidos").val() == "" || $("#cotizacion-correo").val() == "") {
 								valid = false;
-								error += "Apellido no puede estar vacío.\n";
-							}
-							if ($("#cotizacion-correo").val() == "") {
-								valid = false;
-								error += "Correo no puede estar vacío.\n";
+								// error += "Debe de llenar todos los campos. \n";
+								Swal.fire({
+									icon: 'error',
+									title: 'Oops...',
+									text: 'Debe de llenar todos los campos'
+
+								})
 							}
 							if ($("#cotizacion-edad").val() > 100) {
 								valid = false;
-								error += "La edad no puede ser mayor a 100";
+								Swal.fire({
+									icon: 'error',
+									title: 'Oops...',
+									text: 'La edad no puede ser mayor a 100'
+
+								})
 							}
 							if (error != "") {
 								//alert(error);
