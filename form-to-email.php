@@ -1,26 +1,59 @@
 <?php
 date_default_timezone_set('America/Tegucigalpa');
 setlocale(LC_ALL, 'es_HN');
+require_once __DIR__ . '/doc/vendor/autoload.php';
+require_once './doc/model.php';
+require_once './doc/convertidor/convertidor.php';
+require_once './doc/convertidor/convertidor_fecha.php';
+$modelonumero = new modelonumero();
+$modelofecha = new modelofecha();
+$stylesheet = file_get_contents('doc/css/style-contrato.css');
+
+
 $formInfo = $_POST['Cotizacion'];
 $fullName = $formInfo['nombres'] . ' ' . $formInfo['apellidos'];
 $age = $formInfo['edad'];
 $identidad = $formInfo['identificacion'];
 $telefono = $formInfo['telefono'];
 $exams = $_POST["Examen"];
+$precio = $_POST["Precio"];
 $examsAsHtml = '';
+$total = 0;
 for ($i = 0, $size = count($exams); $i < $size; ++$i) {
 	$examsAsHtml .= '
-	<li style="text-align: left;"><span style="font-size: 14pt; font-family: helvetica, arial, sans-serif;"><strong>' . $exams[$i] . '</strong></span></li>
+		<p style="text-align: left;"><span style="font-size: 13pt; font-family: helvetica, arial, sans-serif;"><strong>' . $exams[$i] . ' - L.' . $precio[$i] . '</strong></span></p>
 	';
+	$total += $precio[$i];
 }
+
+function quitar_acentos($cadena)
+{
+	$originales = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿ';
+	$modificadas = 'aaaaaaaceeeeiiiidnoooooouuuuybsaaaaaaaceeeeiiiidnoooooouuuyyby';
+	$cadena = utf8_decode($cadena);
+	$cadena = strtr($cadena, utf8_decode($originales), $modificadas);
+	return utf8_encode($cadena);
+}
+
 
 $emailTo = "info@laboratorioscatacamas.hn,sinoeproducciones@gmail.com,musaenz@gmail.com";
 $emailFrom = $formInfo['correo'];
 $emailSubject = "Cotización de Exámenes";
 $headers = "From: no-reply@laboratorioscatacamas.hn \r\n";
 $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-$pdfLocation = './adjunto.pdf';
-$pdfName = 'Cotización ' . $fullName;
+
+
+//Quitar acentos y espacios
+$searchString = " ";
+$replaceString = "";
+$fullName = strtolower(quitar_acentos(str_replace($searchString, $replaceString, $fullName)));
+$nombreCompleto = strtoupper($fullName);
+
+
+
+
+$pdfLocation = 'Cotizacion-' . $fullName . '.pdf';
+$pdfName = 'Cotizacion-' . $fullName . '.pdf';
 $filetype    = "application/pdf"; // type
 
 $emailBody = ' 
@@ -230,30 +263,34 @@ $emailBody = '
 																				Datos Personales</strong></span>
 																	<p style="text-align: left;"><span
 																			style="font-size: 14pt; font-family: helvetica, arial, sans-serif;"><strong>Nombre:
-																				'.$fullName.'</strong></span></p>
+																				' . $fullName . '</strong></span></p>
 
 																	<p style="text-align: left;"><span
 																			style="font-size: 14pt; font-family: helvetica, arial, sans-serif;"><strong>Identidad:
-																				'.$identidad.'</strong></span></p>
+																				' . $identidad . '</strong></span></p>
 
 																	<p style="text-align: left;"><span
 																			style="font-size: 14pt; font-family: helvetica, arial, sans-serif;"><strong>Edad:
-																				'.$age.'</strong></span></p>
+																				' . $age . '</strong></span></p>
 
 																	<p style="text-align: left;"><span
 																			style="font-size: 14pt; font-family: helvetica, arial, sans-serif;"><strong>Correo:
-																				'.$emailFrom.'</strong></span></p>
+																				' . $emailFrom . '</strong></span></p>
 
 																	<p style="text-align: left;"><span
 																			style="font-size: 14pt; font-family: helvetica, arial, sans-serif;"><strong>Teléfono:
 																				<a
-																					href="tel:'.$telefono.'">'.$telefono.'</a></strong></span>
+																					href="tel:' . $telefono . '">' . $telefono . '</a></strong></span>
 																	</p>
 																	<p style="text-align: center;"><span
 																			style="font-size: 18pt; font-family: helvetica, arial, sans-serif;"><strong><br>
 																				Cotización solicitada</strong></span>
-																	<ul>
-																		'.$examsAsHtml.'
+																	
+																	' . $examsAsHtml . '
+																	<hr>
+																	<p style="text-align: left;"><span
+																			style="font-size: 15pt; font-family: helvetica, arial, sans-serif;"><strong>Total: L.' . $total . '</strong></span>
+																	</p>
 																</td>
 															</tr>
 														</tbody>
@@ -282,41 +319,76 @@ $emailBody = '
 
 ';
 
-$eol = PHP_EOL;
-$semi_rand     = md5(time());
-$mime_boundary = "==Multipart_Boundary_x{$semi_rand}x";
-$headers       = "From: $emailFrom$eol" .
-  "MIME-Version: 1.0$eol" .
-  "Content-Type: multipart/mixed;$eol" .
-  " boundary=\"$mime_boundary\"";
-
-// add html message body
-  $message = "--$mime_boundary$eol" .
-  "Content-Type: text/html; charset=\"iso-8859-1\"$eol" .
-  "Content-Transfer-Encoding: 7bit$eol$eol" .
-  $emailBody . $eol;
-
-// fetch pdf
-$file = fopen($pdfLocation, 'rb');
-$data = fread($file, filesize($pdfLocation));
-fclose($file);
-$pdf = chunk_split(base64_encode($data));
-
-$message .= "--$mime_boundary$eol" .
-  "Content-Type: $filetype;$eol" .
-  " name=\"$pdfName\"$eol" .
-  "Content-Disposition: attachment;$eol" .
-  " filename=\"$pdfName\"$eol" .
-  "Content-Transfer-Encoding: base64$eol$eol" .
-  $pdf . $eol .
-  "--$mime_boundary--";
+// $html .= $emailBody;
 
 
-// mail($emailTo, $emailSubject, $emailBody, $headers);
-$mail = mail($emailTo, $emailSubject, $message, $headers);
 
-echo $emailTo . "<br>" . $emailSubject . "<br>" . $message . "<br>" . $headers . "<br>" . $returnpath;
-echo $mail?"<h1>Correo enviado.</h1>":"<h1>El envío de correo falló.</h1>";
+try {
+	$mpdf = new \Mpdf\Mpdf(['format' => 'Legal']);
+	$mpdf->adjustFontDescLineheight = 1.8;
+	$mpdf->SetMargins(30, 250, 30);
+	$mpdf->SetAutoPageBreak(true, 25);
+	// $mpdf->debug = true;
+	// ob_end_clean();
+	$mpdf->WriteHTML($stylesheet, 1);
+	$mpdf->WriteHTML($emailBody);
+	$mpdf->Output("Cotizacion-" . $fullName . ".pdf", "I");
+	$mpdf->Output("Cotizacion-" . $fullName . ".pdf", "F");
+	$mpdf->Output("Cotizacion-" . $fullName . ".pdf", "D");
+} catch (\Mpdf\MpdfException $e) { // Note: safer fully qualified exception 
+	//       name used for catch
+	// Process the exception, log, print etc.
+	echo $e->getMessage();
+}
+
+
+if (file_exists("Cotizacion-" . $fullName . ".pdf")) {
+
+	$eol = PHP_EOL;
+	$semi_rand     = md5(time());
+	$mime_boundary = "==Multipart_Boundary_x{$semi_rand}x";
+	$headers       = "From: $emailFrom$eol" .
+		"MIME-Version: 1.0$eol" .
+		"Content-Type: multipart/mixed;$eol" .
+		" boundary=\"$mime_boundary\"";
+
+	// add html message body
+	$message = "--$mime_boundary$eol" .
+		"Content-Type: text/html; charset=\"iso-8859-1\"$eol" .
+		"Content-Transfer-Encoding: 7bit$eol$eol" .
+		$emailBody . $eol;
+
+	// fetch pdf
+	$file = fopen($pdfLocation, 'rb');
+	$data = fread($file, filesize($pdfLocation));
+	fclose($file);
+	$pdf = chunk_split(base64_encode($data));
+
+	$message .= "--$mime_boundary$eol" .
+		"Content-Type: $filetype;$eol" .
+		" name=\"$pdfName\"$eol" .
+		"Content-Disposition: attachment;$eol" .
+		" filename=\"$pdfName\"$eol" .
+		"Content-Transfer-Encoding: base64$eol$eol" .
+		$pdf . $eol .
+		"--$mime_boundary--";
+
+
+	// mail($emailTo, $emailSubject, $emailBody, $headers);
+	$mail = mail($emailTo, $emailSubject, $message, $headers);
+	if ($mail) {
+		echo "The email was sent.";
+		//Eliminar cotizacion despues de enviar
+		// unlink("Cotizacion-" . $fullName . ".pdf");
+	} else {
+		echo "There was an error sending the mail.";
+		// unlink("Cotizacion-" . $fullName . ".pdf");
+		//Eliminar cotizacion despues de enviar
+	}
+} else {
+
+	echo "There was an error sending the mail.";
+}
 
 ?>
 

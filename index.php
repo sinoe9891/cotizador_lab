@@ -183,6 +183,7 @@ include 'conexion.php';
 																			<label for="toggleButton<?php echo $hola['id'] ?>" data-on-text="" data-off-text=""></label>
 																			<div class="toggle-button__icon"></div>
 																		</div>
+																		<input type="hidden" name="Precio[]" value="<?php echo $hola['precio'] ?>">
 																	</td>
 																</tr>
 															<?php
