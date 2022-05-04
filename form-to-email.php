@@ -4,23 +4,26 @@ setlocale(LC_ALL, 'es_HN');
 $formInfo = $_POST['Cotizacion'];
 $fullName = $formInfo['nombres'] . ' ' . $formInfo['apellidos'];
 $age = $formInfo['edad'];
-$emailFrom = $formInfo['correo'];
 $identidad = $formInfo['identificacion'];
 $telefono = $formInfo['telefono'];
 $exams = $_POST["Examen"];
 $examsAsHtml = '';
 for ($i = 0, $size = count($exams); $i < $size; ++$i) {
 	$examsAsHtml .= '
-        <li style="text-align: left;"><span style="font-size: 14pt; font-family: helvetica, arial, sans-serif;"><strong>' . $exams[$i] . '</strong></span></li>
-        ';
+	<li style="text-align: left;"><span style="font-size: 14pt; font-family: helvetica, arial, sans-serif;"><strong>' . $exams[$i] . '</strong></span></li>
+	';
 }
+
+$emailTo = "info@laboratorioscatacamas.hn,sinoeproducciones@gmail.com,musaenz@gmail.com";
+$emailFrom = $formInfo['correo'];
 $emailSubject = "Cotización de Exámenes";
-$emailTo = "info@laboratorioscatacamas.hn,sinoeproducciones@gmail.com,musaenz@gmail.com
-";
 $headers = "From: no-reply@laboratorioscatacamas.hn \r\n";
 $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+$pdfLocation = './adjunto.pdf';
+$pdfName = 'Cotización ' . $fullName;
+$filetype    = "application/pdf"; // type
+
 $emailBody = ' 
- 
 <!DOCTYPE html>
 <html>
 
@@ -278,7 +281,42 @@ $emailBody = '
 </html>
 
 ';
-mail($emailTo, $emailSubject, $emailBody, $headers);
+
+$eol = PHP_EOL;
+$semi_rand     = md5(time());
+$mime_boundary = "==Multipart_Boundary_x{$semi_rand}x";
+$headers       = "From: $emailFrom$eol" .
+  "MIME-Version: 1.0$eol" .
+  "Content-Type: multipart/mixed;$eol" .
+  " boundary=\"$mime_boundary\"";
+
+// add html message body
+  $message = "--$mime_boundary$eol" .
+  "Content-Type: text/html; charset=\"iso-8859-1\"$eol" .
+  "Content-Transfer-Encoding: 7bit$eol$eol" .
+  $emailBody . $eol;
+
+// fetch pdf
+$file = fopen($pdfLocation, 'rb');
+$data = fread($file, filesize($pdfLocation));
+fclose($file);
+$pdf = chunk_split(base64_encode($data));
+
+$message .= "--$mime_boundary$eol" .
+  "Content-Type: $filetype;$eol" .
+  " name=\"$pdfName\"$eol" .
+  "Content-Disposition: attachment;$eol" .
+  " filename=\"$pdfName\"$eol" .
+  "Content-Transfer-Encoding: base64$eol$eol" .
+  $pdf . $eol .
+  "--$mime_boundary--";
+
+
+// mail($emailTo, $emailSubject, $emailBody, $headers);
+$mail = mail($emailTo, $emailSubject, $message, $headers);
+
+echo $emailTo . "<br>" . $emailSubject . "<br>" . $message . "<br>" . $headers . "<br>" . $returnpath;
+echo $mail?"<h1>Correo enviado.</h1>":"<h1>El envío de correo falló.</h1>";
 
 ?>
 
