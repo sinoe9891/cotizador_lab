@@ -50,29 +50,9 @@ $emailSubject = "Cotización de Exámenes";
 $headers = "From: no-reply@laboratorioscatacamas.hn \r\n";
 $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
-// $emailBody .= ' 
-// <br>
-// // <div class="caja">
-// // 	<p class="nombre" style="margin-top: 50px;"><span style="font-family: helvetica, arial, sans-serif;"><strong>
-// // 	' . $fullName . '</strong></span></p>
-
-// // 	<p class="edad">
-// // 		<span style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;' . $age . '</strong></span>
-		
-// // 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-// // 		<span class="genero" style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>Masculino</strong></span>
-
-// // 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-// // 		<span class="telefono" style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong><a href="tel:' . $telefono . '">' . $telefono . '</a></strong></span>
-// // 	</p>
-
-// // 	<p class="identidad"><span style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;' . $identidad . '</strong></span>
-
-// // 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-// // 	<span style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>' . $emailFrom . '</strong></span></p>
-// // </div>';
 $emailBody .= ' 
+<br>
+
 <table class="examenes">
 	<tbody>
 		<tr>
@@ -87,8 +67,7 @@ $emailBody .= '
 			</td>
 		</tr>
 	</tbody>
-</table>';
-$emailBody .= ' 
+</table>
 <table>
 	<tbody>
 		<tr class="">
@@ -106,8 +85,7 @@ $emailBody .= '
 			</td>
 		</tr>
 	</tbody>
-</table>';
-$emailBody .= ' 
+</table>
 <table>
 	<tbody>
 
