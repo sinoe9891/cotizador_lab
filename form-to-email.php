@@ -369,7 +369,7 @@ try {
 	// ob_end_clean();
 	$mpdf->WriteHTML($stylesheet, 1);
 	$mpdf->WriteHTML($emailBody);
-	$mpdf->Output("Cotizacion-" . $fullName . ".pdf", "I");
+	// $mpdf->Output("Cotizacion-" . $fullName . ".pdf", "I");
 	$mpdf->Output("Cotizacion-" . $fullName . ".pdf", "F");
 	// $mpdf->Output("Cotizacion-" . $fullName . ".pdf", "D");
 } catch (\Mpdf\MpdfException $e) { // Note: safer fully qualified exception 
@@ -379,8 +379,8 @@ try {
 }
 
 
-// if (file_exists("Cotizacion-" . $fullName . ".pdf")) {
-
+if (file_exists("Cotizacion-" . $fullName . ".pdf")) {
+	echo '<h1>Entró</h1>';
 // 	$eol = PHP_EOL;
 // 	$semi_rand     = md5(time());
 // 	$mime_boundary = "==Multipart_Boundary_x{$semi_rand}x";
@@ -425,7 +425,7 @@ try {
 // } else {
 
 // 	echo "There was an error sending the mail.";
-// }
+}
 
 ?>
 
