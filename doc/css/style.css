@@ -256,15 +256,15 @@ p > span {
 }
 
 .caja {
-    margin: 47px 0 52px 0 !important;
+    margin: -37px 0 52px 0 !important;
 }
 .nombre {
-	padding-top: 2px !important;
+	padding-top: -5px !important;
     text-align: center !important;
     font: size 11pt;
 }
 .edad {
-	padding-top: 2px !important;
+	padding-top: 0px !important;
     padding-left: 60px !important;
 }
 .identidad {
@@ -360,3 +360,14 @@ td {
 	font-size: 9px !important;
 	text-align: left !important;
 }
+
+.fecha{
+
+	display:flex;
+	justify-content: end;
+}
+.fecha p{
+	text-align: right !important;
+	margin-right: 40px;
+}
+

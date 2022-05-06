@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set('America/Tegucigalpa');
 setlocale(LC_ALL, 'es_HN');
-require_once __DIR__ . './doc/vendor/autoload.php';
+require_once __DIR__ . '/doc/vendor/autoload.php';
 require_once './doc/model.php';
 require_once './doc/convertidor/convertidor.php';
 require_once './doc/convertidor/convertidor_fecha.php';
@@ -17,13 +17,15 @@ $identidad = $formInfo['identificacion'];
 $telefono = $formInfo['telefono'];
 $exams = $_POST["Examen"];
 $precio = $_POST["Precio"];
-
-
 $examsAsHtml = '';
 $total = 0;
 $precios = '';
 $emailBody = '';
+$bodyPDF = '';
 $correoBody = '';
+
+
+
 function quitar_acentos($cadena)
 {
 	$originales = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿ';
@@ -33,16 +35,6 @@ function quitar_acentos($cadena)
 	return utf8_encode($cadena);
 }
 
-for ($i = 0, $size = count($exams); $i < $size; ++$i) {
-	$examsAsHtml .= '
-		<p style="text-align: left;"><span style="font-size: 11pt; font-family: helvetica, arial, sans-serif;"><strong>' . $exams[$i] . '</strong></span></p>
-	';
-	$precios .= '<p style="text-align: left;"><span style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>L.' . $precio[$i] . '</strong></span></p>';
-	$total += $precio[$i];
-}
-
-$moneda = 'LEMPIRAS';
-$valor_letras = $modelonumero->numtoletras(abs($total), $moneda, '');
 
 $emailTo = $formInfo['correo'];
 $emailFrom = "no-reply@laboratorioscatacamas.hn";
@@ -52,7 +44,8 @@ $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
 
 
-$correoBody = ' 
+
+$emailBody = ' 
 <!DOCTYPE html>
 <html>
 <head></head>
@@ -224,37 +217,22 @@ $correoBody = '
 																	data-link-color="link text color"
 																	data-link-style="font-weight:bold; text-decoration:underline; color:#40aceb;">
 																	<p style="text-align: center;"><span
-																			style="font-size: 24pt; font-family: helvetica, arial, sans-serif;"><strong>Solicitud
-																				de Cotizaci&oacute;n</strong></span>
-																	<p style="text-align: center;"><span
-																			style="font-size: 18pt; font-family: helvetica, arial, sans-serif;"><strong><br>
-																				Datos Personales</strong></span>
-																	<p style="text-align: left;"><span
-																			style="font-size: 14pt; font-family: helvetica, arial, sans-serif;"><strong>Nombre:
-																				' . $fullName . '</strong></span></p>
-																	<p style="text-align: left;"><span
-																			style="font-size: 14pt; font-family: helvetica, arial, sans-serif;"><strong>Identidad:
-																				' . $identidad . '</strong></span></p>
-																	<p style="text-align: left;"><span
-																			style="font-size: 14pt; font-family: helvetica, arial, sans-serif;"><strong>Edad:
-																				' . $age . '</strong></span></p>
-																	<p style="text-align: left;"><span
-																			style="font-size: 14pt; font-family: helvetica, arial, sans-serif;"><strong>Correo:
-																				' . $emailFrom . '</strong></span></p>
-																	<p style="text-align: left;"><span
-																			style="font-size: 14pt; font-family: helvetica, arial, sans-serif;"><strong>Teléfono:
-																				<a
-																					href="tel:' . $telefono . '">' . $telefono . '</a></strong></span>
-																	</p>
-																	<p style="text-align: center;"><span
-																			style="font-size: 18pt; font-family: helvetica, arial, sans-serif;"><strong><br>
-																				Cotización solicitada</strong></span>
+																			style="font-size: 24pt; font-family: helvetica, arial, sans-serif;"><strong>Cotizaci&oacute;n</strong></span></p>
 																	
-																	' . $examsAsHtml . '
-																	<hr>
 																	<p style="text-align: left;"><span
-																			style="font-size: 15pt; font-family: helvetica, arial, sans-serif;"><strong>Total: L.' . $total . '</strong></span>
-																	</p>
+																			style="font-size: 14pt; font-family: helvetica, arial, sans-serif;"><strong>Hola,
+																				' . $fullName . '</strong></span></p>
+																
+																	<p style="text-align: left;"><span
+																			style="font-size: 14pt; font-family: helvetica, arial, sans-serif;"><strong>Adjunto encontrar&aacute;s la cotizaci&oacute;n solicitada v&iacute;a nuestro Cotizador Web.</strong></span></p>
+																				
+																				
+																	<p style="text-align: left;"><span
+																			style="font-size: 14pt; font-family: helvetica, arial, sans-serif;"><strong>Si tienes consultas, favor comun&iacute;cate a nuestros n&uacute;meros enviando un mensaje al Whatsapp 9478-2525 o escr&iacute;benos al correo electr&oacute;nico: <a href="mailto:info@laboratorioscatacamas.hn">info@laboratorioscatacamas.hn</strong></span></p>
+																	<br>
+													<p style="text-align: center;"><span style="font-size: 24pt; font-family: helvetica, arial, sans-serif;"><strong>¡Gracias por tu preferencia!</strong></span></p>
+
+																	
 																</td>
 															</tr>
 														</tbody>
@@ -281,50 +259,154 @@ $correoBody = '
 </html>
 ';
 
+
+
+
+// $html .= $emailBody;
+for ($i = 0, $size = count($exams); $i < $size; ++$i) {
+	$examsAsHtml .= '
+		<p style="text-align: left;"><span style="font-size: 11pt; font-family: helvetica, arial, sans-serif;"><strong>' . $exams[$i] . '</strong></span></p>
+	';
+	$precios .= '<p style="text-align: left;"><span style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>L.' . $precio[$i] . '</strong></span></p>';
+	$total += $precio[$i];
+}
+
+$moneda = 'LEMPIRAS';
+$valor_letras = $modelonumero->numtoletras(abs($total), $moneda, '');
+$Date = date('d/m/Y', time());  
+$Time = date('h:i a', time());  
+
+$bodyPDF .= ' 
+<br>
+<div class="caja">
+	
+		<div class="fecha">
+		<p class="fecha" style="margin-top: 50px;"><span style="font-family: helvetica, arial, sans-serif;"><strong>
+			' . $Date . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $Time . '</strong></span></p>
+		
+		</div>
+
+
+	<p class="nombre" style="margin-top: 50px;"><span style="font-family: helvetica, arial, sans-serif;"><strong>
+	' . $fullName . '</strong></span></p>
+
+	<p class="edad">
+		<span style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $age . '</strong></span>
+		
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+		<span class="genero" style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>Masculino</strong></span>
+
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span class="telefono" style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong><a href="tel:' . $telefono . '">' . $telefono . '</a></strong></span>
+	</p>
+
+	<p class="identidad">
+	<span class="ident" style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;' . $identidad . '</strong></span>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>' . $emailTo . '</strong></span></p>
+</div>
+
+<table class="examenes">
+	<tbody>
+		<tr>
+			<td class="examen">
+				<p style="text-align: center;"><span style="font-size: 18pt; font-family: helvetica, arial, sans-serif;">
+				' . $examsAsHtml . '
+			</td>
+			<td class="precios">
+				<p style="text-align: center;"><span style="font-size: 18pt; font-family: helvetica, arial, sans-serif;">
+				' . $precios . '
+				
+			</td>
+		</tr>
+	</tbody>
+</table>
+<table>
+	<tbody>
+		<tr class="">
+			<td class="letras">
+				<p style"   text-align: right !important;"><span style="font-size: 9pt; font-family: helvetica, arial, sans-serif;">Monto en letras: <strong>' . $valor_letras . '</strong></span>
+				</p>
+			</td>
+			<td class="sub">
+				<p style"    text-align: right !important;"><span style="font-size: 9pt; font-family: helvetica, arial, sans-serif;"><strong>Sub total: </strong></span>
+				</p>
+			</td>
+			<td class="subtotal">
+				<p class=""><span style="font-size: 9pt; font-family: helvetica, arial, sans-serif;"><strong>L.' . $total . '</strong></span>
+				</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<table>
+	<tbody>
+
+		<tr class="">
+			<td class="title">
+				<p class=""><span style="font-size: 9pt; font-family: helvetica, arial, sans-serif;"><strong>Descuentos y rebajas:</strong></span>
+				</p>
+			</td>
+			<td class="decuentos">
+				<p class=""><span style="font-size: 9pt; font-family: helvetica, arial, sans-serif;"><strong> L. 0.00</strong></span>
+				</p>
+			</td>
+		</tr>
+		<tr class="">
+			<td class="title">
+				<p class=""><span style="font-size: 9pt; font-family: helvetica, arial, sans-serif;"><strong>Total: </strong></span>
+				</p>
+			</td>
+			<td class="total">
+				<p class=""><span style="font-size: 9pt; font-family: helvetica, arial, sans-serif;"><strong>L.' . $total . '</strong></span>
+				</p>
+			</td>
+		</tr>
+	</tbody>
+</table>';
+
 //Quitar acentos y espacios
 $searchString = " ";
 $replaceString = "";
 $fullName = strtolower(quitar_acentos(str_replace($searchString, $replaceString, $fullName)));
 $nombreCompleto = strtoupper($fullName);
 
-$pdfLocation = 'adjunto.pdf';
-$pdfName = 'adjunto.pdf';
+
+
+
+$pdfLocation = 'Cotizacion-' . $fullName . '.pdf';
+$pdfName = 'Cotizacion-' . $fullName . '.pdf';
 $filetype    = "application/pdf"; // type
-// $pdfLocation = 'Cotizacion-' . $fullName . '.pdf';
-// $pdfName = 'Cotizacion-' . $fullName . '.pdf';
-// $filetype    = "application/pdf"; // type
 
-// $html .= $emailBody;
-
-// try {
-// 	// $mpdf = new \Mpdf\Mpdf(['format' => 'Legal']);
-// 	$mpdf = new \Mpdf\Mpdf(['format' => [215.9, 279.4]]);
-// 	$mpdf->adjustFontDescLineheight = 1.8;
-// 	// $mpdf->SetMargins(30, 250, 30);
-// 	$mpdf = new \Mpdf\Mpdf([
-// 		'margin_left' => 5,
-// 		'margin_right' => 5,
-// 		'margin_top' => 32.5,
-// 		'margin_bottom' => 0,
-// 	]);
-// 	$mpdf->SetAutoPageBreak(true, 25);
-// 	// $mpdf->debug = true;
-// 	// ob_end_clean();
-// 	$mpdf->WriteHTML($stylesheet, 1);
-// 	$mpdf->WriteHTML($correoBody);
-// 	// $mpdf->Output("Cotizacion-" . $fullName . ".pdf", "I");
-// 	$mpdf->Output("Cotizacion-" . $fullName . ".pdf", "F");
-// 	// $mpdf->Output("Cotizacion-" . $fullName . ".pdf", "D");
-// } catch (\Mpdf\MpdfException $e) { // Note: safer fully qualified exception 
-// 	//       name used for catch
-// 	// Process the exception, log, print etc.
-// 	echo $e->getMessage();
-// }
+try {
+	$mpdf = new \Mpdf\Mpdf(['format' => [215.9, 279.4]]);
+	$mpdf->adjustFontDescLineheight = 1.8;
+	// $mpdf->SetMargins(30, 250, 30);
+	$mpdf = new \Mpdf\Mpdf([
+		'margin_left' => 5,
+		'margin_right' => 5,
+		'margin_top' => 32.5,
+		'margin_bottom' => 0,
+	]);
+	$mpdf->SetAutoPageBreak(true, 25);
+	// $mpdf->debug = true;
+	// ob_end_clean();
+	$mpdf->WriteHTML($stylesheet, 1);
+	$mpdf->WriteHTML($bodyPDF);
+	// $mpdf->Output("Cotizacion-" . $fullName . ".pdf", "I");
+	$mpdf->Output("Cotizacion-" . $fullName . ".pdf", "F");
+	//$mpdf->Output("Cotizacion-" . $fullName . ".pdf", "D");
+} catch (\Mpdf\MpdfException $e) { // Note: safer fully qualified exception 
+	//       name used for catch
+	// Process the exception, log, print etc.
+	echo $e->getMessage();
+}
 
 
-if (file_exists("adjunto.pdf")) {
-// if (file_exists("Cotizacion-" . $fullName . ".pdf")) {
-	echo '<h1>Entró</h1>';
+if (file_exists("Cotizacion-" . $fullName . ".pdf")) {
+
 	$eol = PHP_EOL;
 	$semi_rand     = md5(time());
 	$mime_boundary = "==Multipart_Boundary_x{$semi_rand}x";
@@ -337,7 +419,7 @@ if (file_exists("adjunto.pdf")) {
 	$message = "--$mime_boundary$eol" .
 		"Content-Type: text/html; charset=\"iso-8859-1\"$eol" .
 		"Content-Transfer-Encoding: 7bit$eol$eol" .
-		$correoBody . $eol;
+		$emailBody . $eol;
 
 	// fetch pdf
 	$file = fopen($pdfLocation, 'rb');
@@ -360,10 +442,10 @@ if (file_exists("adjunto.pdf")) {
 	if ($mail) {
 		echo "The email was sent.";
 		//Eliminar cotizacion despues de enviar
-		unlink("Cotizacion-" . $fullName . ".pdf");
+		// unlink("Cotizacion-" . $fullName . ".pdf");
 	} else {
 		echo "There was an error sending the mail.";
-		unlink("Cotizacion-" . $fullName . ".pdf");
+		// unlink("Cotizacion-" . $fullName . ".pdf");
 		//Eliminar cotizacion despues de enviar
 	}
 } else {

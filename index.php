@@ -59,9 +59,13 @@ include 'conexion.php';
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav text-center">
-						<li class=""><a href="https://laboratorioscatacamas.hn/"><p><i class="fa-solid fa-caret-right"></i>Volver al Inicio</p></a></li>
-						<li class=""><a href="https://laboratorioscatacamas.hn/cotizador" target="_blank"><p><i class="fa-solid fa-caret-right"></i>Nueva
-								Cotización</p></a></li>
+						<li class=""><a href="https://laboratorioscatacamas.hn/">
+								<p><i class="fa-solid fa-caret-right"></i>Volver al Inicio</p>
+							</a></li>
+						<li class=""><a href="https://laboratorioscatacamas.hn/cotizador" target="_blank">
+								<p><i class="fa-solid fa-caret-right"></i>Nueva
+									Cotización</p>
+							</a></li>
 					</ul>
 				</div>
 				<!--/.nav-collapse -->
@@ -273,7 +277,7 @@ include 'conexion.php';
 												<div class="col-lg-4">
 													<div class="form-group field-cotizacion-identificacion">
 														<label class="control-label" for="cotizacion-identificacion">Número de ID</label>
-														<input type="text" id="cotizacion-identificacion" class="form-control" name="Cotizacion[identificacion]" maxlength="128">
+														<input type="text" id="cotizacion-identificacion" class="form-control" name="Cotizacion[identificacion]" minlength="13" maxlength="128" placeholder="080119980280">
 
 														<div class="help-block"></div>
 													</div>
@@ -508,7 +512,7 @@ include 'conexion.php';
 							}
 						}
 						if ($(this).attr('data-step') == "2") {
-							if ($("#cotizacion-nombres").val() == "" || $("#cotizacion-apellidos").val() == "" || $("#cotizacion-correo").val() == "") {
+							if ($("#cotizacion-nombres").val() == "" || $("#cotizacion-apellidos").val() == "" || $("#cotizacion-correo").val() == "" || $("#cotizacion-identificacion").val() == "" || $("#cotizacion-edad").val() == "") {
 								valid = false;
 								// error += "Debe de llenar todos los campos. \n";
 								Swal.fire({
@@ -518,6 +522,21 @@ include 'conexion.php';
 
 								})
 							}
+							if ($("#cotizacion-identificacion").val() != "") {
+								if ($("#cotizacion-identificacion").val().length < 13) {
+									console.log("Error");
+									valid = false;
+									Swal.fire({
+										icon: 'error',
+										title: 'Oops...',
+										text: 'La identidad no puede ser menor a 13 dígitos'
+
+									})
+								}
+							}
+
+
+
 							if ($("#cotizacion-edad").val() > 100) {
 								valid = false;
 								Swal.fire({
@@ -527,6 +546,8 @@ include 'conexion.php';
 
 								})
 							}
+
+
 							if (error != "") {
 								//alert(error);
 								$("#errordiv").removeClass('hidden');
