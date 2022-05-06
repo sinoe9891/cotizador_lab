@@ -50,28 +50,28 @@ $emailSubject = "Cotización de Exámenes";
 $headers = "From: no-reply@laboratorioscatacamas.hn \r\n";
 $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
-$emailBody .= ' 
-<br>
-<div class="caja">
-	<p class="nombre" style="margin-top: 50px;"><span style="font-family: helvetica, arial, sans-serif;"><strong>
-	' . $fullName . '</strong></span></p>
+// $emailBody .= ' 
+// <br>
+// // <div class="caja">
+// // 	<p class="nombre" style="margin-top: 50px;"><span style="font-family: helvetica, arial, sans-serif;"><strong>
+// // 	' . $fullName . '</strong></span></p>
 
-	<p class="edad">
-		<span style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;' . $age . '</strong></span>
+// // 	<p class="edad">
+// // 		<span style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;' . $age . '</strong></span>
 		
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// // 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-		<span class="genero" style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>Masculino</strong></span>
+// // 		<span class="genero" style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>Masculino</strong></span>
 
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<span class="telefono" style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong><a href="tel:' . $telefono . '">' . $telefono . '</a></strong></span>
-	</p>
+// // 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// // 		<span class="telefono" style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong><a href="tel:' . $telefono . '">' . $telefono . '</a></strong></span>
+// // 	</p>
 
-	<p class="identidad"><span style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;' . $identidad . '</strong></span>
+// // 	<p class="identidad"><span style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;' . $identidad . '</strong></span>
 
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<span style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>' . $emailFrom . '</strong></span></p>
-</div>';
+// // 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// // 	<span style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>' . $emailFrom . '</strong></span></p>
+// // </div>';
 $emailBody .= ' 
 <table class="examenes">
 	<tbody>
@@ -391,7 +391,7 @@ try {
 	// ob_end_clean();
 	$mpdf->WriteHTML($stylesheet, 1);
 	$mpdf->WriteHTML($emailBody);
-	$mpdf->Output("Cotizacion-" . $fullName . ".pdf", "I");
+	// $mpdf->Output("Cotizacion-" . $fullName . ".pdf", "I");
 	$mpdf->Output("Cotizacion-" . $fullName . ".pdf", "F");
 	// $mpdf->Output("Cotizacion-" . $fullName . ".pdf", "D");
 } catch (\Mpdf\MpdfException $e) { // Note: safer fully qualified exception 
