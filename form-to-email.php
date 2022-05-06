@@ -23,6 +23,7 @@ $examsAsHtml = '';
 $total = 0;
 $precios = '';
 $emailBody = '';
+$correoBody = '';
 function quitar_acentos($cadena)
 {
 	$originales = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿ';
@@ -50,6 +51,63 @@ $headers = "From: no-reply@laboratorioscatacamas.hn \r\n";
 $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
 $emailBody .= ' 
+<br>
+<div class="caja">
+	<p class="nombre" style="margin-top: 50px;"><span style="font-family: helvetica, arial, sans-serif;"><strong>
+	' . $fullName . '</strong></span></p>
+
+	<p class="edad">
+		<span style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;' . $age . '</strong></span>
+		
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+		<span class="genero" style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>Masculino</strong></span>
+
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span class="telefono" style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong><a href="tel:' . $telefono . '">' . $telefono . '</a></strong></span>
+	</p>
+
+	<p class="identidad"><span style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;' . $identidad . '</strong></span>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>' . $emailFrom . '</strong></span></p>
+</div>';
+$emailBody .= ' 
+<table class="examenes">
+	<tbody>
+		<tr>
+			<td class="examen">
+				<p style="text-align: center;"><span style="font-size: 18pt; font-family: helvetica, arial, sans-serif;">
+				' . $examsAsHtml . '
+			</td>
+			<td class="precios">
+				<p style="text-align: center;"><span style="font-size: 18pt; font-family: helvetica, arial, sans-serif;">
+				' . $precios . '
+				
+			</td>
+		</tr>
+	</tbody>
+</table>';
+$emailBody .= ' 
+<table>
+	<tbody>
+		<tr class="">
+			<td class="letras">
+				<p style"   text-align: right !important;"><span style="font-size: 9pt; font-family: helvetica, arial, sans-serif;">Monto en letras: <strong>'.$valor_letras.'</strong></span>
+				</p>
+			</td>
+			<td class="sub">
+				<p style"    text-align: right !important;"><span style="font-size: 9pt; font-family: helvetica, arial, sans-serif;"><strong>Sub total: </strong></span>
+				</p>
+			</td>
+			<td class="subtotal">
+				<p class=""><span style="font-size: 9pt; font-family: helvetica, arial, sans-serif;"><strong>L.' . $total . '</strong></span>
+				</p>
+			</td>
+		</tr>
+	</tbody>
+</table>';
+$emailBody .= ' 
 <table>
 	<tbody>
 
@@ -76,6 +134,234 @@ $emailBody .= '
 	</tbody>
 </table>';
 
+$correobody = ' 
+<!DOCTYPE html>
+<html>
+<head></head>
+<body style="background:#eaeced;">
+	<style type="text/css">
+		<!--
+		< !-- * {
+			-ms-text-size-adjust: 100%;
+			-webkit-text-size-adjust: none;
+			-webkit-text-resize: 100%;
+			text-resize: 100%;
+		}
+		a {
+			outline: none;
+			color: #40acebx;
+			text-decoration: underline;
+		}
+		a:hover {
+			text-decoration: none !important;
+		}
+		.nav a:hover {
+			text-decoration: underline !important;
+		}
+		.title a:hover {
+			text-decoration: underline !important;
+		}
+		.title-2 a:hover {
+			text-decoration: underline !important;
+		}
+		.btn:hover {
+			opacity: 0.8;
+		}
+		.btn a:hover {
+			text-decoration: none !important;
+		}
+		.btn {
+			-webkit-transition: all 0.3s ease;
+			-moz-transition: all 0.3s ease;
+			-ms-transition: all 0.3s ease;
+			transition: all 0.3s ease;
+		}
+		table td {
+			border-collapse: collapse !important;
+		}
+		.ExternalClass,
+		.ExternalClass a,
+		.ExternalClass span,
+		.ExternalClass b,
+		.ExternalClass br,
+		.ExternalClass p,
+		.ExternalClass div {
+			line-height: inherit;
+		}
+		@media only screen and (max-width:500px) {
+			table[class="flexible"] {
+				width: 100% !important;
+			}
+			table[class="center"] {
+				float: none !important;
+				margin: 0 auto !important;
+			}
+			*[class="hide"] {
+				display: none !important;
+				width: 0 !important;
+				height: 0 !important;
+				padding: 0 !important;
+				font-size: 0 !important;
+				line-height: 0 !important;
+			}
+			td[class="img-flex"] img {
+				width: 100% !important;
+				height: auto !important;
+			}
+			td[class="aligncenter"] {
+				text-align: center !important;
+			}
+			th[class="flex"] {
+				display: block !important;
+				width: 100% !important;
+			}
+			td[class="wrapper"] {
+				padding: 0 !important;
+			}
+			td[class="holder"] {
+				padding: 30px 15px 20px !important;
+			}
+			td[class="nav"] {
+				padding: 20px 0 0 !important;
+				text-align: center !important;
+			}
+			td[class="h-auto"] {
+				height: auto !important;
+			}
+			td[class="description"] {
+				padding: 30px 20px !important;
+			}
+			td[class="i-120"] img {
+				width: 120px !important;
+				height: auto !important;
+			}
+			td[class="footer"] {
+				padding: 5px 20px 20px !important;
+			}
+			td[class="footer"] td[class="aligncenter"] {
+				line-height: 25px !important;
+				padding: 20px 0 0 !important;
+			}
+			tr[class="table-holder"] {
+				display: table !important;
+				width: 100% !important;
+			}
+			th[class="thead"] {
+				display: table-header-group !important;
+				width: 100% !important;
+			}
+			th[class="tfoot"] {
+				display: table-footer-group !important;
+				width: 100% !important;
+			}
+		}
+		-->
+	</style>
+	<table bgcolor="#eaeced" cellpadding="0" cellspacing="0" style="min-width: 320px; width: 100%;">
+		<!-- fix for gmail -->
+		<tbody>
+			<tr>
+				<td class="wrapper" style="padding: 0 10px;">
+					<!-- module 1 -->
+					<table cellpadding="0" cellspacing="0" style="width: 100%;" data-module="module-1"
+						data-thumb="thumbnails/01.png">
+						<tbody>
+							<tr style="height: 126px;">
+								<td style="height: 126px;" bgcolor="#eaeced" data-bgcolor="bg-module">
+									<table align="center" cellpadding="0" cellspacing="0" class="flexible"
+										style="margin: 0px auto; width: 600px;">
+										<tbody>
+											<tr style="height: 12px;">
+												<td style="padding: 10px 0px; height: 12px;" bgcolor="white"><img
+														alt="logo" height="50"
+														src="https://laboratorioscatacamas.hn/wp-content/uploads/2022/04/cropped-logo-02-1.png"
+														style="display: flex; width:40%;height:auto;margin-left: auto; margin-right: auto;"
+														title="logo" />
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- module 2 -->
+					<table cellpadding="0" cellspacing="0" style="width: 100%;" data-module="module-2"
+						data-thumb="thumbnails/02.png">
+						<tbody>
+							<tr>
+								<td bgcolor="#eaeced" data-bgcolor="bg-module">
+									<table align="center" cellpadding="0" cellspacing="0" class="flexible"
+										style="margin: 0px auto; width: 600px;">
+										<tbody>
+											<tr>
+												<td class="holder" style="padding: 58px 60px 52px;" bgcolor="white"
+													data-bgcolor="bg-block">
+													<table cellpadding="0" cellspacing="0" style="width: 100.248%;">
+														<tbody>
+															<tr>
+																<td style="width: 100%;" align="center"
+																	data-color="text" data-size="size text"
+																	data-min="10" data-max="26"
+																	data-link-color="link text color"
+																	data-link-style="font-weight:bold; text-decoration:underline; color:#40aceb;">
+																	<p style="text-align: center;"><span
+																			style="font-size: 24pt; font-family: helvetica, arial, sans-serif;"><strong>Solicitud
+																				de Cotizaci&oacute;n</strong></span>
+																	<p style="text-align: center;"><span
+																			style="font-size: 18pt; font-family: helvetica, arial, sans-serif;"><strong><br>
+																				Datos Personales</strong></span>
+																	<p style="text-align: left;"><span
+																			style="font-size: 14pt; font-family: helvetica, arial, sans-serif;"><strong>Nombre:
+																				' . $fullName . '</strong></span></p>
+																	<p style="text-align: left;"><span
+																			style="font-size: 14pt; font-family: helvetica, arial, sans-serif;"><strong>Identidad:
+																				' . $identidad . '</strong></span></p>
+																	<p style="text-align: left;"><span
+																			style="font-size: 14pt; font-family: helvetica, arial, sans-serif;"><strong>Edad:
+																				' . $age . '</strong></span></p>
+																	<p style="text-align: left;"><span
+																			style="font-size: 14pt; font-family: helvetica, arial, sans-serif;"><strong>Correo:
+																				' . $emailFrom . '</strong></span></p>
+																	<p style="text-align: left;"><span
+																			style="font-size: 14pt; font-family: helvetica, arial, sans-serif;"><strong>Teléfono:
+																				<a
+																					href="tel:' . $telefono . '">' . $telefono . '</a></strong></span>
+																	</p>
+																	<p style="text-align: center;"><span
+																			style="font-size: 18pt; font-family: helvetica, arial, sans-serif;"><strong><br>
+																				Cotización solicitada</strong></span>
+																	
+																	' . $examsAsHtml . '
+																	<hr>
+																	<p style="text-align: left;"><span
+																			style="font-size: 15pt; font-family: helvetica, arial, sans-serif;"><strong>Total: L.' . $total . '</strong></span>
+																	</p>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- module 3 -->
+					<!-- module 4 -->
+					<!-- module 5 -->
+					<!-- module 6 -->
+					<!-- module 7 -->
+				</td>
+			</tr>
+			<!-- fix for gmail -->
+		</tbody>
+	</table>
+</body>
+</html>
+';
 
 //Quitar acentos y espacios
 $searchString = " ";
@@ -105,7 +391,7 @@ try {
 	// ob_end_clean();
 	$mpdf->WriteHTML($stylesheet, 1);
 	$mpdf->WriteHTML($emailBody);
-	// $mpdf->Output("Cotizacion-" . $fullName . ".pdf", "I");
+	$mpdf->Output("Cotizacion-" . $fullName . ".pdf", "I");
 	$mpdf->Output("Cotizacion-" . $fullName . ".pdf", "F");
 	// $mpdf->Output("Cotizacion-" . $fullName . ".pdf", "D");
 } catch (\Mpdf\MpdfException $e) { // Note: safer fully qualified exception 
@@ -129,7 +415,7 @@ if (file_exists("Cotizacion-" . $fullName . ".pdf")) {
 	$message = "--$mime_boundary$eol" .
 		"Content-Type: text/html; charset=\"iso-8859-1\"$eol" .
 		"Content-Transfer-Encoding: 7bit$eol$eol" .
-		$emailBody . $eol;
+		$correobody . $eol;
 
 	// fetch pdf
 	$file = fopen($pdfLocation, 'rb');
