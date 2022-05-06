@@ -50,69 +50,9 @@ $emailSubject = "Cotización de Exámenes";
 $headers = "From: no-reply@laboratorioscatacamas.hn \r\n";
 $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
-$emailBody .= ' 
-<br>
 
-<table class="examenes">
-	<tbody>
-		<tr>
-			<td class="examen">
-				<p style="text-align: center;"><span style="font-size: 18pt; font-family: helvetica, arial, sans-serif;">
-				' . $examsAsHtml . '
-			</td>
-			<td class="precios">
-				<p style="text-align: center;"><span style="font-size: 18pt; font-family: helvetica, arial, sans-serif;">
-				' . $precios . '
-				
-			</td>
-		</tr>
-	</tbody>
-</table>
-<table>
-	<tbody>
-		<tr class="">
-			<td class="letras">
-				<p style"   text-align: right !important;"><span style="font-size: 9pt; font-family: helvetica, arial, sans-serif;">Monto en letras: <strong>'.$valor_letras.'</strong></span>
-				</p>
-			</td>
-			<td class="sub">
-				<p style"    text-align: right !important;"><span style="font-size: 9pt; font-family: helvetica, arial, sans-serif;"><strong>Sub total: </strong></span>
-				</p>
-			</td>
-			<td class="subtotal">
-				<p class=""><span style="font-size: 9pt; font-family: helvetica, arial, sans-serif;"><strong>L.' . $total . '</strong></span>
-				</p>
-			</td>
-		</tr>
-	</tbody>
-</table>
-<table>
-	<tbody>
 
-		<tr class="">
-			<td class="title">
-				<p class=""><span style="font-size: 9pt; font-family: helvetica, arial, sans-serif;"><strong>Descuentos y rebajas:</strong></span>
-				</p>
-			</td>
-			<td class="decuentos">
-				<p class=""><span style="font-size: 9pt; font-family: helvetica, arial, sans-serif;"><strong> L. 0.00</strong></span>
-				</p>
-			</td>
-		</tr>
-		<tr class="">
-			<td class="title">
-				<p class=""><span style="font-size: 9pt; font-family: helvetica, arial, sans-serif;"><strong>Total: </strong></span>
-				</p>
-			</td>
-			<td class="total">
-				<p class=""><span style="font-size: 9pt; font-family: helvetica, arial, sans-serif;"><strong>L.' . $total . '</strong></span>
-				</p>
-			</td>
-		</tr>
-	</tbody>
-</table>';
-
-$correobody = ' 
+$correoBody = ' 
 <!DOCTYPE html>
 <html>
 <head></head>
@@ -411,20 +351,20 @@ if (file_exists("Cotizacion-" . $fullName . ".pdf")) {
 // 		"--$mime_boundary--";
 
 
-// 	// mail($emailTo, $emailSubject, $emailBody, $headers);
-// 	$mail = mail($emailTo, $emailSubject, $message, $headers);
-// 	if ($mail) {
-// 		echo "The email was sent.";
-// 		//Eliminar cotizacion despues de enviar
-// 		unlink("Cotizacion-" . $fullName . ".pdf");
-// 	} else {
-// 		echo "There was an error sending the mail.";
-// 		unlink("Cotizacion-" . $fullName . ".pdf");
-// 		//Eliminar cotizacion despues de enviar
-// 	}
-// } else {
+	// mail($emailTo, $emailSubject, $emailBody, $headers);
+	$mail = mail($emailTo, $emailSubject, $correoBody, $headers);
+	if ($mail) {
+		echo "The email was sent.";
+		//Eliminar cotizacion despues de enviar
+		unlink("Cotizacion-" . $fullName . ".pdf");
+	} else {
+		echo "There was an error sending the mail.";
+		unlink("Cotizacion-" . $fullName . ".pdf");
+		//Eliminar cotizacion despues de enviar
+	}
+} else {
 
-// 	echo "There was an error sending the mail.";
+	echo "There was an error sending the mail.";
 }
 
 ?>
