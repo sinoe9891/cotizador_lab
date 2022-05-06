@@ -369,7 +369,7 @@ try {
 	// ob_end_clean();
 	$mpdf->WriteHTML($stylesheet, 1);
 	$mpdf->WriteHTML($emailBody);
-	// $mpdf->Output("Cotizacion-" . $fullName . ".pdf", "I");
+	$mpdf->Output("Cotizacion-" . $fullName . ".pdf", "I");
 	$mpdf->Output("Cotizacion-" . $fullName . ".pdf", "F");
 	// $mpdf->Output("Cotizacion-" . $fullName . ".pdf", "D");
 } catch (\Mpdf\MpdfException $e) { // Note: safer fully qualified exception 
@@ -379,53 +379,53 @@ try {
 }
 
 
-if (file_exists("Cotizacion-" . $fullName . ".pdf")) {
+// if (file_exists("Cotizacion-" . $fullName . ".pdf")) {
 
-	$eol = PHP_EOL;
-	$semi_rand     = md5(time());
-	$mime_boundary = "==Multipart_Boundary_x{$semi_rand}x";
-	$headers       = "From: $emailFrom$eol" .
-		"MIME-Version: 1.0$eol" .
-		"Content-Type: multipart/mixed;$eol" .
-		" boundary=\"$mime_boundary\"";
+// 	$eol = PHP_EOL;
+// 	$semi_rand     = md5(time());
+// 	$mime_boundary = "==Multipart_Boundary_x{$semi_rand}x";
+// 	$headers       = "From: $emailFrom$eol" .
+// 		"MIME-Version: 1.0$eol" .
+// 		"Content-Type: multipart/mixed;$eol" .
+// 		" boundary=\"$mime_boundary\"";
 
-	// add html message body
-	$message = "--$mime_boundary$eol" .
-		"Content-Type: text/html; charset=\"iso-8859-1\"$eol" .
-		"Content-Transfer-Encoding: 7bit$eol$eol" .
-		$correobody . $eol;
+// 	// add html message body
+// 	$message = "--$mime_boundary$eol" .
+// 		"Content-Type: text/html; charset=\"iso-8859-1\"$eol" .
+// 		"Content-Transfer-Encoding: 7bit$eol$eol" .
+// 		$correobody . $eol;
 
-	// fetch pdf
-	$file = fopen($pdfLocation, 'rb');
-	$data = fread($file, filesize($pdfLocation));
-	fclose($file);
-	$pdf = chunk_split(base64_encode($data));
+// 	// fetch pdf
+// 	$file = fopen($pdfLocation, 'rb');
+// 	$data = fread($file, filesize($pdfLocation));
+// 	fclose($file);
+// 	$pdf = chunk_split(base64_encode($data));
 
-	$message .= "--$mime_boundary$eol" .
-		"Content-Type: $filetype;$eol" .
-		" name=\"$pdfName\"$eol" .
-		"Content-Disposition: attachment;$eol" .
-		" filename=\"$pdfName\"$eol" .
-		"Content-Transfer-Encoding: base64$eol$eol" .
-		$pdf . $eol .
-		"--$mime_boundary--";
+// 	$message .= "--$mime_boundary$eol" .
+// 		"Content-Type: $filetype;$eol" .
+// 		" name=\"$pdfName\"$eol" .
+// 		"Content-Disposition: attachment;$eol" .
+// 		" filename=\"$pdfName\"$eol" .
+// 		"Content-Transfer-Encoding: base64$eol$eol" .
+// 		$pdf . $eol .
+// 		"--$mime_boundary--";
 
 
-	// mail($emailTo, $emailSubject, $emailBody, $headers);
-	$mail = mail($emailTo, $emailSubject, $message, $headers);
-	if ($mail) {
-		echo "The email was sent.";
-		//Eliminar cotizacion despues de enviar
-		unlink("Cotizacion-" . $fullName . ".pdf");
-	} else {
-		echo "There was an error sending the mail.";
-		unlink("Cotizacion-" . $fullName . ".pdf");
-		//Eliminar cotizacion despues de enviar
-	}
-} else {
+// 	// mail($emailTo, $emailSubject, $emailBody, $headers);
+// 	$mail = mail($emailTo, $emailSubject, $message, $headers);
+// 	if ($mail) {
+// 		echo "The email was sent.";
+// 		//Eliminar cotizacion despues de enviar
+// 		unlink("Cotizacion-" . $fullName . ".pdf");
+// 	} else {
+// 		echo "There was an error sending the mail.";
+// 		unlink("Cotizacion-" . $fullName . ".pdf");
+// 		//Eliminar cotizacion despues de enviar
+// 	}
+// } else {
 
-	echo "There was an error sending the mail.";
-}
+// 	echo "There was an error sending the mail.";
+// }
 
 ?>
 
