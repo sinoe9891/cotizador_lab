@@ -161,9 +161,9 @@ try {
 	// ob_end_clean();
 	$mpdf->WriteHTML($stylesheet, 1);
 	$mpdf->WriteHTML($emailBody);
-	$mpdf->Output("Cotizacion-" . $fullName . ".pdf", "I");
-	// $mpdf->Output("Cotizacion-" . $fullName . ".pdf", "F");
-	//$mpdf->Output("Cotizacion-" . $fullName . ".pdf", "D");
+	// $mpdf->Output("Cotizacion-" . $fullName . ".pdf", "I");
+	$mpdf->Output("Cotizacion-" . $fullName . ".pdf", "F");
+	// $mpdf->Output("Cotizacion-" . $fullName . ".pdf", "D");
 } catch (\Mpdf\MpdfException $e) { // Note: safer fully qualified exception 
 	//       name used for catch
 	// Process the exception, log, print etc.
