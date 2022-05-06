@@ -1,8 +1,8 @@
 body {
-    /* background-image: url(./img/fondo.jpg); */
-    /* background-image-resize: 6; */
-    text-align: justify;
-    /* font-family: "Calibri, sans-serif"; */
+	background-image: url(./doc/img/fondo.jpg);
+    background-image-resize: 6;
+    text-align: center;
+    font-family: "Calibri, sans-serif";
 }
 
 .nombre {

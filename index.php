@@ -12,6 +12,10 @@ include 'conexion.php';
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-param" content="_csrf">
 	<title>Cotizador de Exámenes</title>
+	<meta property="og:description" content="Aquí encontrará exámenes especiales y de rutina, si desea cotizar un exámen que no se encuentra en esta lista, por favor comunicarse con nosotros enviando un correo electrónico a info@laboratorioscatacamas.hn o llamando al +504 2799-4495.">
+	<meta property="og:url" content="https://laboratorioscatacamas.hn/cotizador/">
+	<meta property="og:site_name" content="Cotizador de Exámenes - Laboratorios Catacamas">
+	<meta property="og:image" content="https://laboratorioscatacamas.hn/wp-content/uploads/2022/05/Screenshot-2022-05-04-105424.jpg">
 	<link href="fonts/fontawesome-webfont.woff2" rel="stylesheet">
 	<link href="fonts/glyphicons-halflings-regular.woff2" rel="stylesheet">
 	<link href="css/font-awesome.min.css" rel="stylesheet">
@@ -26,13 +30,10 @@ include 'conexion.php';
 	<link rel="stylesheet" id="morriston-google-fonts-css" href="https://fonts.googleapis.com/css?family=Pacifico:400,400i,500,500i,600,600i,700,700i,800,800i%7CPoppins:400,400i,500,500i,600,600i,700,700i,800,800i&amp;subset=latin,cyrillic-ext,latin-ext,cyrillic,greek-ext,greek,vietnamese" type="text/css" media="all">
 	<link rel="icon" href="https://laboratorioscatacamas.hn/wp-content/uploads/2022/04/favicon_v.png" sizes="32x32">
 	<link rel="alternate" type="application/rss+xml" title="Laboratorios Catacamas » Feed" href="https://laboratorioscatacamas.hn/feed/">
-	<link rel="icon" href="https://laboratorioshosanna.com/wp-content/uploads/2020/10/cropped-Favicon2-Laboratorios_Hosanna_Honduras-192x192.png" sizes="192x192">
-	<link rel="apple-touch-icon" href="https://laboratorioshosanna.com/wp-content/uploads/2020/10/cropped-Favicon2-Laboratorios_Hosanna_Honduras-180x180.png">
 	<link rel="alternate" type="application/rss+xml" title="Laboratorios Hosanna » Feed de los comentarios">
-
 </head>
 
-<body>
+<body>s
 	<div class="main-wrapper">
 		<div class="row" style="margin-right: 0 !important;margin-left: 0 !important;    display: flex;align-items: center;">
 			<div class="col-sm-4"></div>

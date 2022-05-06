@@ -1,7 +1,8 @@
 body {
-    /* background-image: url(./img/fondo.jpg); */
-    /* background-image-resize: 6; */
-    text-align: justify;
+    background-image: url(./doc/img/fondo.jpg);
+    background-image-resize: 3;
+    background-repeat: no-repeat;
+    text-align: center;
     font-family: "Calibri, sans-serif";
 }
 
@@ -91,8 +92,8 @@ td {
     width: 100%;
     text-align: center;
 }
-.center-factura td{
-	margin: 0;
+.center-factura td {
+    margin: 0;
     padding: 0;
 }
 
@@ -108,7 +109,7 @@ td {
 }
 .saldos td {
     text-align: right;
-	margin: 0;
+    margin: 0;
     padding: 0;
 }
 
@@ -121,9 +122,6 @@ td {
     text-align: left;
 }
 
-
-
-
 /* Cronograma */
 .tablecronograma {
     width: 100%;
@@ -132,8 +130,8 @@ td {
 }
 
 .tablecronograma th {
-	background-color: #dddddd;
-	border: 1px solid black;
+    background-color: #dddddd;
+    border: 1px solid black;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -160,7 +158,6 @@ td {
     padding: 8px;
 }
 
-
 tr:nth-child(even) {
     background-color: #ffffff;
 }
@@ -179,7 +176,7 @@ tr:nth-child(even) {
 }
 
 .container_cronograma h3 {
-	color:#2053a1;
+    color: #2053a1;
     font-size: 18px;
     /* line-height:0.5px; */
     margin-bottom: 0;
@@ -192,11 +189,7 @@ tr:nth-child(even) {
     margin-top: 0;
 }
 
-
-
-
 .container_cliente {
-   
     text-align: left;
     width: 100%;
     /* border:1px solid red; */
@@ -204,27 +197,26 @@ tr:nth-child(even) {
 .tablecliente {
     width: 100%;
     /* border:0.2px solid black; */
-	margin-bottom: 15px;
-	text-align: left;
-
+    margin-bottom: 15px;
+    text-align: left;
 }
 
 .tablecliente th {
-	/* width:auto; */
-	/* background-color: #dddddd; */
-	font-size: 14px;
-	/* border: 1px solid black; */
-   margin: 15px 0;
+    /* width:auto; */
+    /* background-color: #dddddd; */
+    font-size: 14px;
+    /* border: 1px solid black; */
+    margin: 15px 0;
     padding-right: 5px;
     text-align: left;
 }
 .tablecliente td {
-	font-size: 14px;
-	/* width:auto; */
-   margin: 15px 0;
+    font-size: 14px;
+    /* width:auto; */
+    margin: 15px 0;
     padding: 0;
     text-align: left;
-	/* padding: 0 5px ; */
+    /* padding: 0 5px ; */
     /* border: 1px solid black; */
 }
 .tablecliente tr {
@@ -232,18 +224,18 @@ tr:nth-child(even) {
     padding: 0;
 }
 .bck_icon {
-	width: 45%;
+    width: 45%;
     /* border: 1px solid black; */
 }
 
 .card {
-	position: absolute;
-	overflow: visible;
-	left: 1cm;
-	top: 0cm;
-	padding: 1.5em;
-	font-family:sans;
-	margin: 0;
+    position: absolute;
+    overflow: visible;
+    left: 1cm;
+    top: 0cm;
+    padding: 1.5em;
+    font-family: sans;
+    margin: 0;
 }
 
 /* #company_card {
@@ -251,3 +243,120 @@ tr:nth-child(even) {
 	top: 10cm;
     left:80px;
 } */
+
+p {
+    line-height: 1.85;
+    text-align: left;
+    font: size 11pt;
+    /* color:red !important; */
+}
+
+p > span {
+    font: size 11pt;
+}
+
+.caja {
+    margin: 47px 0 52px 0 !important;
+}
+.nombre {
+	padding-top: 2px !important;
+    text-align: center !important;
+    font: size 11pt;
+}
+.edad {
+	padding-top: 2px !important;
+    padding-left: 60px !important;
+}
+.identidad {
+    padding-top: -3px !important;
+    padding-left: 55px !important;
+}
+.telefono {
+    padding-left: 160px !important;
+}
+.correo {
+    padding-left: 60px !important;
+}
+
+.total {
+    padding-left: 60px !important;
+    text-align: right !important;
+}
+
+td {
+    text-align: left ;
+}
+
+.precios {
+    text-align: right !important;
+}
+.total {
+    text-align: right !important;
+	width:20% !important;
+	background-color: #d9dde2;
+}
+
+.decuentos {
+    text-align: right !important;
+	width:18.5% !important;
+	background-color: #d9dde2;
+}
+.decuentos p{
+    text-align: right !important;
+}
+.title{
+	text-align: right !important;
+	width:89% !important;
+}
+.title p{
+	text-align: right !important;
+}
+
+
+
+.examenes{
+	width:100%;
+	background-color: #d9dde2;
+}
+
+.examen{
+	text-align: left !important;
+	width:81.5% !important;
+}
+.examen p{
+	text-align: left !important;
+}
+
+
+
+.subtotal{
+	/* width: 60%; */
+    text-align: right !important;
+	width:18.5% !important;
+	background-color: #d9dde2;
+}
+.subtotal p{
+    text-align: right !important;
+}
+
+
+
+.sub{
+	text-align: right !important;
+	/* width:10% !important; */
+	/* background-color: red; */
+}
+.sub p{
+	text-align: right !important;
+}
+
+
+.letras{
+	text-align: left !important;
+	/* width:10px !important; */
+	/* background-color: blue; */
+}
+.letras p{
+	font-size: 9px !important;
+	text-align: left !important;
+}
