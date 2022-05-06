@@ -50,49 +50,6 @@ $headers = "From: no-reply@laboratorioscatacamas.hn \r\n";
 $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
 $emailBody .= ' 
-<br>
-<div class="caja">
-	<p class="nombre" style="margin-top: 50px;"><span style="font-family: helvetica, arial, sans-serif;"><strong>
-	' . $fullName . '</strong></span></p>
-
-
-</div>';
-$emailBody .= ' 
-<table class="examenes">
-	<tbody>
-		<tr>
-			<td class="examen">
-				<p style="text-align: center;"><span style="font-size: 18pt; font-family: helvetica, arial, sans-serif;">
-				' . $examsAsHtml . '
-			</td>
-			<td class="precios">
-				<p style="text-align: center;"><span style="font-size: 18pt; font-family: helvetica, arial, sans-serif;">
-				' . $precios . '
-				
-			</td>
-		</tr>
-	</tbody>
-</table>';
-$emailBody .= ' 
-<table>
-	<tbody>
-		<tr class="">
-			<td class="letras">
-				<p style"   text-align: right !important;"><span style="font-size: 9pt; font-family: helvetica, arial, sans-serif;">Monto en letras: <strong>'.$valor_letras.'</strong></span>
-				</p>
-			</td>
-			<td class="sub">
-				<p style"    text-align: right !important;"><span style="font-size: 9pt; font-family: helvetica, arial, sans-serif;"><strong>Sub total: </strong></span>
-				</p>
-			</td>
-			<td class="subtotal">
-				<p class=""><span style="font-size: 9pt; font-family: helvetica, arial, sans-serif;"><strong>L.' . $total . '</strong></span>
-				</p>
-			</td>
-		</tr>
-	</tbody>
-</table>';
-$emailBody .= ' 
 <table>
 	<tbody>
 
