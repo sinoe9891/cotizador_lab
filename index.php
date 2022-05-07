@@ -258,14 +258,24 @@ include 'conexion.php';
 												</div>
 												<div class="col-lg-4">
 													<div class="form-group field-cotizacion-correo required">
+														<label class="control-label" for="Cotizacion[genero]">Género</label>
+														<select class="form-control" name="Cotizacion[genero]" id="cotizacion-genero">
+															<option value="Masculino">Masculino</option>
+															<option value="Femenino">Femenino</option>
+														</select>
+														<div class="help-block"></div>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-lg-4">
+													<div class="form-group field-cotizacion-correo required">
 														<label class="control-label" for="cotizacion-correo">Correo</label>
 														<input type="text" id="cotizacion-correo" class="form-control" name="Cotizacion[correo]" maxlength="128" aria-required="true">
 
 														<div class="help-block"></div>
 													</div>
 												</div>
-											</div>
-											<div class="row">
 												<div class="col-lg-4">
 													<div class="form-group field-cotizacion-telefono">
 														<label class="control-label" for="cotizacion-telefono">Teléfono</label>
