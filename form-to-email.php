@@ -57,7 +57,29 @@ if (isset($_POST['Cotizacion'])) {
 	$emailFrom1 = "no-reply@laboratorioscatacamas.hn";
 	$emailSubject1 = "Nueva Cotización de Exámenes Creada";
 
+	
 
+
+	// $html .= $emailBody;
+	for ($i = 0, $size = count($exams); $i < $size; ++$i) {
+		$examsAsHtml .= '
+		<p style="text-align: left;"><span style="font-size: 11pt; font-family: helvetica, arial, sans-serif;"><strong>' . $exams[$i] . '</strong></span></p>
+	';
+		$precios .= '<p style="text-align: left;"><span style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>L.' . $precio[$i] . '</strong></span></p>';
+		$total += $precio[$i];
+	}
+	
+	include 'conexion.php';
+	$Fecha = date('Y-m-d');
+	$hor = time();
+	$Hora = date('H:i:s', $hor);
+	//insertar en la base de datos del email
+	$sql = "INSERT INTO cotizaciones (nombres, correo, precio, fecha, hora) VALUES ('$Nombres','$correoCliete', '$total', '$Fecha', '$Hora')";
+	mysqli_query($conn, $sql);
+	$last_id = $conn->insert_id;
+
+	$moneda = 'LEMPIRAS';
+	$valor_letras = $modelonumero->numtoletras(abs($total), $moneda, '');
 
 
 	$emailBody = ' 
@@ -245,7 +267,7 @@ if (isset($_POST['Cotizacion'])) {
 																	<p style="text-align: left;"><span
 																			style="font-size: 14pt; font-family: helvetica, arial, sans-serif;"><strong>Si tienes consultas, favor comun&iacute;cate a nuestros n&uacute;meros enviando un mensaje al Whatsapp 9478-2525 o escr&iacute;benos al correo electr&oacute;nico: <a href="mailto:info@laboratorioscatacamas.hn">info@laboratorioscatacamas.hn</strong></span></p>
 																	<br>
-													<p style="text-align: center;"><span style="font-size: 24pt; font-family: helvetica, arial, sans-serif;"><strong>¡Gracias por tu preferencia!</strong></span></p>
+													<p style="text-align: center;"><span style="font-size: 24pt; font-family: helvetica, arial, sans-serif;"><strong>&#161;Gracias por tu preferencia!</strong></span></p>
 
 																	
 																</td>
@@ -274,27 +296,7 @@ if (isset($_POST['Cotizacion'])) {
 </html>
 ';
 
-	include 'conexion.php';
-	$Fecha = date('Y-m-d');
-	$hor = time();
-	$Hora = date('H:i:s', $hor);
-	//insertar en la base de datos del email
-	$sql = "INSERT INTO cotizaciones (correo, precio, fecha, hora) VALUES ('$correoCliete', '$total', '$Fecha', '$Hora')";
-	mysqli_query($conn, $sql);
-	$last_id = $conn->insert_id;
 
-
-	// $html .= $emailBody;
-	for ($i = 0, $size = count($exams); $i < $size; ++$i) {
-		$examsAsHtml .= '
-		<p style="text-align: left;"><span style="font-size: 11pt; font-family: helvetica, arial, sans-serif;"><strong>' . $exams[$i] . '</strong></span></p>
-	';
-		$precios .= '<p style="text-align: left;"><span style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>L.' . $precio[$i] . '</strong></span></p>';
-		$total += $precio[$i];
-	}
-
-	$moneda = 'LEMPIRAS';
-	$valor_letras = $modelonumero->numtoletras(abs($total), $moneda, '');
 
 
 	$bodyPDF .= ' 
@@ -395,9 +397,6 @@ if (isset($_POST['Cotizacion'])) {
 	$replaceString = "";
 	$fullName = strtolower(quitar_acentos(str_replace($searchString, $replaceString, $fullName)));
 	$nombreCompleto = strtoupper($fullName);
-
-
-
 
 	$pdfLocation = 'Cotizacion-' . $fullName . '.pdf';
 	$pdfName = 'Cotizacion-' . $fullName . '.pdf';
