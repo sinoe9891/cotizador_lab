@@ -33,7 +33,7 @@ include 'conexion.php';
 	<link rel="alternate" type="application/rss+xml" title="Laboratorios Hosanna » Feed de los comentarios">
 </head>
 
-<body>s
+<body>
 	<div class="main-wrapper">
 		<div class="row" style="margin-right: 0 !important;margin-left: 0 !important;    display: flex;align-items: center;">
 			<div class="col-sm-4"></div>
