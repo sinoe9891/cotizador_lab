@@ -184,7 +184,8 @@ include 'conexion.php';
 
 																	<td style="vertical-align: middle">
 																		<div class="toggle-button toggle-button--vesi">
-																			<input onclick="return seleccionarExamen(this,true)" data-relaciones="" id="toggleButton<?php echo $hola['id'] ?>" type="checkbox" name="Examen[]" value="<?php echo $hola['nombre'] ?>">
+																			<!-- <input onclick="return seleccionarExamen(this,true)" data-relaciones="" id="toggleButton<?php echo $hola['id'] ?>" type="checkbox" name="Examen[]" value="<?php echo $hola['nombre'] ?>"> -->
+																			<input onclick="return seleccionarExamen(this,true)" data-relaciones="" id="toggleButton<?php echo $hola['id'] ?>" type="checkbox" name="Examen[]" value="<?php echo $hola['id'] ?>">
 																			<label for="toggleButton<?php echo $hola['id'] ?>" data-on-text="" data-off-text=""></label>
 																			<div class="toggle-button__icon"></div>
 																		</div>
@@ -398,35 +399,35 @@ include 'conexion.php';
 				}
 
 				function seleccionarExamen(element, next) {
-					var es = $(element).val();
-					if (ldl && (es == "Colesterol HDL" || es == "Colesterol Total" || es == "Trigliceridos")) {
-						/*alert("Usted ha seleccionado Colesterol LDL, este examen debe ir incluido.");*/
-						$("#mensajeerror").html('Usted ha seleccionado Colesterol LDL, este examen debe ir incluido.');
-						$("#errordiv").toggleClass('hidden');
-						return false;
-					}
-					console.log(element);
-					var add = false;
-					if ($(element).is(':checked')) {
-						chequeados++;
-						add = true;
-					} else {
-						chequeados--;
-						add = false;
-					}
+					// var es = $(element).val();
+					// if (ldl && (es == "Colesterol HDL" || es == "Colesterol Total" || es == "Trigliceridos")) {
+					// 	/*alert("Usted ha seleccionado Colesterol LDL, este examen debe ir incluido.");*/
+					// 	$("#mensajeerror").html('Usted ha seleccionado Colesterol LDL, este examen debe ir incluido.');
+					// 	$("#errordiv").toggleClass('hidden');
+					// 	return false;
+					// }
+					// console.log(element);
+					// var add = false;
+					// if ($(element).is(':checked')) {
+					// 	chequeados++;
+					// 	add = true;
+					// } else {
+					// 	chequeados--;
+					// 	add = false;
+					// }
 					$("#examenes_seleccionados").html($("input:checked").length);
-					if (next) {
-						var relaciones = $(element).attr("data-relaciones");
-						if (relaciones != "") {
-							ldl = !ldl;
-							var array = relaciones.split(',');
-							$.each(array, function(index, value) {
-								if ($(element).val() != value) {
-									activarRelacion("#toggleButton" + value, add);
-								}
-							});
-						}
-					}
+					// if (next) {
+					// 	var relaciones = $(element).attr("data-relaciones");
+					// 	if (relaciones != "") {
+					// 		ldl = !ldl;
+					// 		var array = relaciones.split(',');
+					// 		$.each(array, function(index, value) {
+					// 			if ($(element).val() != value) {
+					// 				activarRelacion("#toggleButton" + value, add);
+					// 			}
+					// 		});
+					// 	}
+					// }
 					return true;
 				}
 

@@ -40,7 +40,8 @@ if (isset($_POST['Cotizacion'])) {
 	$Date = date('d/m/Y', time());
 	$Time = date('h:i a', time());
 
-
+	// print_r($precio);
+	// print_r($exams);
 
 	$emailTo = $formInfo['correo'];
 	$emailFrom = "no-reply@laboratorioscatacamas.hn";
@@ -61,15 +62,22 @@ if (isset($_POST['Cotizacion'])) {
 
 
 	// $html .= $emailBody;
+	include 'conexion.php';
+	
 	for ($i = 0, $size = count($exams); $i < $size; ++$i) {
-		$examsAsHtml .= '
-		<p style="text-align: left;"><span style="font-size: 11pt; font-family: helvetica, arial, sans-serif;"><strong>' . $exams[$i] . '</strong></span></p>
-	';
-		$precios .= '<p style="text-align: left;"><span style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>L.' . $precio[$i] . '</strong></span></p>';
-		$total += $precio[$i];
+
+		$consulta = $conn->query("SELECT id, nombre, precio FROM exa_rutina WHERE id = $exams[$i] ORDER BY nombre ASC");
+		$numero = mysqli_num_rows($consulta);
+		while ($hola = $consulta->fetch_array()) {
+			$examsAsHtml .= '
+			<p style="text-align: left;"><span style="font-size: 11pt; font-family: helvetica, arial, sans-serif;"><strong>' . $hola['nombre'] . '</strong></span></p>';
+	
+			$precios .= '<p style="text-align: left;"><span style="font-size: 10pt; font-family: helvetica, arial, sans-serif;"><strong>L.' . $hola['precio'] . '</strong></span></p>';
+			$total += $hola['precio'];
+		}
+		
 	}
 	
-	include 'conexion.php';
 	$Fecha = date('Y-m-d');
 	$hor = time();
 	$Hora = date('H:i:s', $hor);
