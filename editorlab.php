@@ -12,10 +12,12 @@ if (!isset($_SESSION['username'])) {
 <head>
 	<meta charset="UTF-8">
 	<title>Edición de Precios | Laboratorio Clínico Catacamas</title>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+
+
 	<style>
 		.hidden {
 			display: none;
@@ -47,24 +49,56 @@ if (!isset($_SESSION['username'])) {
 		<div class="row d-flex align-items-center justify-content-center">
 			<div class="col-sm-6 text-center">
 				<img src="https://laboratorioscatacamas.hn/wp-content/uploads/2022/04/cropped-logo-02-1.png" alt="" class="img-responsive img-center img-logo">
-				<h2 class="mt-3">Edición de Precios Laboratorio Clínico Catacamas</h2>
+				<h3 class="mt-3">Edición de Precios Laboratorio Clínico Catacamas</h3>
 			</div>
 		</div>
-
-		<table id="exa_rutina_table" class="table table-striped table-hover">
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Nombre</th>
-					<th>Precio</th>
-					<th>Acciones</th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
+		<div class="table-responsive">
+			<table id="exa_rutina_table" class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nombre</th>
+						<th>Precio</th>
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
 	</div>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 	<script>
+		$(document).ready(function() {
+			$('#exa_rutina_table').DataTable({
+				// Especificamos la fuente de datos a través de AJAX
+				ajax: {
+					url: 'fetch_exa_rutina.php',
+					dataSrc: ''
+				},
+				columns: [{
+						data: 'id'
+					},
+					{
+						data: 'nombre'
+					},
+					{
+						data: 'precio',
+						render: function(data, type, row) {
+							return '<input type="number" class="form-control precio" value="' + data + '" disabled>';
+						}
+					},
+					{
+						data: null,
+						defaultContent: '<button class="editar btn btn-primary">Editar</button>' +
+							'<button class="guardar hidden btn btn-success">Guardar</button>' +
+							'<button class="cancelar hidden btn btn-danger">Cancelar</button>'
+					}
+				]
+			});
+		});
+
 		document.querySelector('#cerrar-sesion-link').addEventListener('click', function(event) {
 			event.preventDefault();
 
@@ -81,94 +115,87 @@ if (!isset($_SESSION['username'])) {
 			});
 		});
 
+		function addClickEvents() {
+			const editButtons = document.querySelectorAll('.editar');
+			editButtons.forEach(button => {
+				button.addEventListener('click', function() {
+					const tr = this.closest('tr');
+					const precioInput = tr.querySelector('.precio');
+					if (precioInput) {
+						precioInput.disabled = false;
+					}
+					const buttons = tr.querySelectorAll('.editar, .guardar, .cancelar');
+					buttons.forEach(btn => btn.classList.toggle('hidden'));
+				});
+			});
+
+			const saveButtons = document.querySelectorAll('.guardar');
+			saveButtons.forEach(button => {
+				button.addEventListener('click', function() {
+					const tr = this.closest('tr');
+					const id = tr.querySelector('td:first-child').innerText;
+					const precioInput = tr.querySelector('.precio');
+					if (precioInput) {
+						precioInput.disabled = false;
+					}
+					const precio = precioInput.value;
+
+					Swal.fire({
+						title: '¿Estás seguro de guardar los cambios?',
+						icon: 'warning',
+						showCancelButton: true,
+						confirmButtonText: 'Sí, guardar',
+						cancelButtonText: 'Cancelar',
+					}).then(result => {
+						if (result.isConfirmed) {
+							fetch('update_exa_rutina.php', {
+								method: 'POST',
+								body: new URLSearchParams({
+									id: id,
+									precio: precio
+								}),
+								headers: {
+									'Content-Type': 'application/x-www-form-urlencoded'
+								}
+							}).then(() => {
+								precioInput.disabled = true;
+								const buttons = tr.querySelectorAll('.editar, .guardar, .cancelar');
+								buttons.forEach(btn => btn.classList.toggle('hidden'));
+							});
+						}
+					});
+				});
+			});
+
+			const cancelButton = document.querySelectorAll('.cancelar');
+			cancelButton.forEach(button => {
+				button.addEventListener('click', function() {
+					const tr = this.closest('tr');
+					const precioInput = tr.querySelector('.precio');
+					if (precioInput) {
+						precioInput.disabled = false;
+					}
+					const buttons = tr.querySelectorAll('.editar, .guardar, .cancelar');
+
+					precioInput.disabled = true;
+					buttons.forEach(btn => btn.classList.toggle('hidden'));
+				});
+			});
+		}
+
 		function loadExaRutina() {
 			fetch('fetch_exa_rutina.php')
 				.then(response => response.json())
 				.then(data => {
-					const tbody = document.querySelector('#exa_rutina_table tbody');
-					tbody.innerHTML = '';
+					// Actualizamos los datos de la tabla con los datos devueltos por la API
+					$('#exa_rutina_table').DataTable().clear();
+					$('#exa_rutina_table').DataTable().rows.add(data);
+					$('#exa_rutina_table').DataTable().draw();
 
-					data.forEach(exa => {
-						const tr = document.createElement('tr');
-						tr.innerHTML = `
-                    <td>${exa.id}</td>
-                    <td>${exa.nombre}</td>
-                    <td><input type="text" class="precio" value="${exa.precio}" disabled></td>
-                    <td>
-						<button class="editar btn btn-primary">Editar</button>
-						<button class="guardar hidden btn btn-success">Guardar</button>
-						<button class="cancelar hidden btn btn-danger">Cancelar</button>
-                    </td>
-                `;
-						tbody.appendChild(tr);
-					});
-
-					const editButtons = document.querySelectorAll('.editar');
-					editButtons.forEach(button => {
-						button.addEventListener('click', function() {
-							const tr = this.closest('tr');
-							const precioInput = tr.querySelector('.precio');
-							const buttons = tr.querySelectorAll('.editar, .guardar, .cancelar');
-
-							// Guarda el valor original del precio antes de habilitar el input
-							precioInput.dataset.originalValue = precioInput.value;
-							precioInput.disabled = false;
-							buttons.forEach(btn => btn.classList.toggle('hidden'));
-						});
-					});
-
-					const saveButtons = document.querySelectorAll('.guardar');
-					saveButtons.forEach(button => {
-						button.addEventListener('click', function() {
-							const tr = this.closest('tr');
-							const id = tr.querySelector('td:first-child').innerText;
-							const precioInput = tr.querySelector('.precio');
-							const precio = precioInput.value;
-
-							Swal.fire({
-								title: '¿Estás seguro de guardar los cambios?',
-								icon: 'warning',
-								showCancelButton: true,
-								confirmButtonText: 'Sí, guardar',
-								cancelButtonText: 'Cancelar',
-							}).then(result => {
-								if (result.isConfirmed) {
-									fetch('update_exa_rutina.php', {
-										method: 'POST',
-										body: new URLSearchParams({
-											id: id,
-											precio: precio
-										}),
-										headers: {
-											'Content-Type': 'application/x-www-form-urlencoded'
-										}
-									}).then(() => {
-										precioInput.disabled = true;
-										const buttons = tr.querySelectorAll('.editar, .guardar, .cancelar');
-										buttons.forEach(btn => btn.classList.toggle('hidden'));
-									});
-								}
-							});
-						});
-					});
-
-					const cancelButton = document.querySelectorAll('.cancelar');
-					cancelButton.forEach(button => {
-						button.addEventListener('click', function() {
-							const tr = this.closest('tr');
-							const precioInput = tr.querySelector('.precio');
-							const buttons = tr.querySelectorAll('.editar, .guardar, .cancelar');
-
-							// Restaura el valor original del precio al presionar "Cancelar"
-							precioInput.value = precioInput.dataset.originalValue;
-
-							precioInput.disabled = true;
-							buttons.forEach(btn => btn.classList.toggle('hidden'));
-						});
-					});
+					// Agregamos eventos click para los botones editar, guardar y cancelar
+					addClickEvents();
 				});
 		}
-
 		document.addEventListener('DOMContentLoaded', function() {
 			loadExaRutina();
 		});
@@ -196,6 +223,8 @@ if (!isset($_SESSION['username'])) {
 			showGreetings();
 		});
 	</script>
+
+
 </body>
 
 </html>

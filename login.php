@@ -21,8 +21,9 @@ include 'conexion.php';
 		<div class="row">
 			<div class="col-md-12 text-center">
 				<img src="https://laboratorioscatacamas.hn/wp-content/uploads/2022/04/cropped-logo-02-1.png" alt="" class="img-responsive img-center img-logo">
-
-				<h1 class="mb-4">Iniciar sesión</h1>
+				<br>
+				<br>
+				<h4 class="mb-4">Iniciar sesión</h4>
 				<form action="login.php" method="post">
 					<div class="mb-3">
 						<label for="username" class="form-label">Usuario:</label>
