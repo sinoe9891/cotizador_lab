@@ -66,6 +66,9 @@ include 'conexion.php';
 								<p><i class="fa-solid fa-caret-right"></i>Nueva
 									Cotización</p>
 							</a></li>
+						<li class=""><a href="https://laboratorioscatacamas.hn/cotizador/login.php" target="_blank">
+								<p><i class="fa-solid fa-caret-right"></i>Iniciar Sesión</p>
+							</a></li>
 					</ul>
 				</div>
 				<!--/.nav-collapse -->
